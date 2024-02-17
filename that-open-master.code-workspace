@@ -5,6 +5,7 @@
 		}
 	],
 	"settings": {
-		"editor.linkedEditing": true
+		"editor.linkedEditing": true,
+		"css.format.enable": true
 	}
 }

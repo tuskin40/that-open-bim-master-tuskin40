@@ -10,7 +10,7 @@
         <aside id="sidebar">
             <img id="company-logo" src="./assets/company-logo.svg" alt="Construction Company">
             <ul id="nav-buttons">
-                <li><span class="material-symbols-outlined">apartment</span> Projects</li>
+                <li><span class="material-symbols-outlined">apartment</span>Projects</li>
                 <li><span class="material-symbols-outlined">people</span>Users</li>
             </ul>
         </aside>
@@ -18,31 +18,34 @@
             <header>
                 <h2>Projects</h2>
                 <div>
-                    <button>New Project</button>
+                    <button><span class="material-symbols-outlined">add</span>New Project</button>
                 </div>
             </header>
             <div id="project-list">
-                <div id="project-card">
-                    <header>
-                        <div id="project-card-icon"></div>
-                        <div id="project-card-name"></div>
-                    </header>
-                    <div id="project-details">
-                        <div id="status-row">
-                            <div>Status</div>
-                            <div id="status-value">Active</div>
+                <div class="project-card">
+                    <div class="card-header">
+                        <p class="card-intial">HC</p>
+                        <div>
+                            <h5>Project Name</h5>
+                            <p>Project Description</p>
                         </div>
-                        <div id="status-row">
-                            <div>Role</div>
-                            <div id="status-value">Engineer</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-property">
+                            <p>Status</p>
+                            <p>Active</p>
                         </div>
-                        <div id="status-row">
-                            <div>Cost</div>
-                            <div id="status-value">$ 2'000'000</div>
+                        <div class="card-property">
+                            <p>Role</p>
+                            <p>Engineer</p>
                         </div>
-                        <div id="status-row">
-                            <div>Estimated Progress</div>
-                            <div id="status-value">43%</div>
+                        <div class="card-property">
+                            <p>Cost</p>
+                            <p >$ 2'000'000</p>
+                        </div>
+                        <div class="card-property">
+                            <p>Estimated Progress</p>
+                            <p>43%</p>
                         </div>
 
                     </div>
