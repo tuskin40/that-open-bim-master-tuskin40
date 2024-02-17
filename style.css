@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 
+/* document.getElementById("new-project-modal").showModal() */
+
+
+
 /* Variables */
 :root {
     --primary: #029AE0;
@@ -9,20 +13,23 @@
     --primary-300: #017CB3;
     --primary-400: #50B6E6;
     --primary-grey: #969696;
+    --primary-red: rgb(239 68 68);
+    --primary-green: rgb(34 197 94);
     --background: #202124;
     --background-100: #26282b;
     --background-200: #3b3c3f;
-    --text-sm: 12px;
-    --text-base: 14px;
-    --text-lg: 16px;
-    --text-xl: 20px;
-    --text-2xl: 24px;
-    --text-3xl: 30px;
+    --text-sm: 10px;
+    --text-base: 12px;
+    --text-lg: 14px;
+    --text-xl: 18px;
+    --text-2xl: 22px;
+    --text-3xl: 28px;
 }
 
 /* General */
 * {
-    font-family: 'Kode Mono', sans-serif;
+    /* font-family: 'Kode Mono', sans-serif; */
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -42,9 +49,9 @@ button {
     padding: 8px 16px;
     cursor: pointer;
     height: 40px;
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: white;
-    border-radius: 100px;
+    border-radius: 16px;
     border: none;
     background-color: var(--primary);
 }
@@ -53,10 +60,21 @@ button:hover {
     background-color: var(--primary-400);
 }
 
-h2 { font-size: var(--text-3xl);}
-h3 { font-size: var(--text-2xl);}
-h4 { font-size: var(--text-xl);}
-h5 { font-size: var(--text-lg);}
+h2 {
+    font-size: var(--text-3xl);
+}
+
+h3 {
+    font-size: var(--text-2xl);
+}
+
+h4 {
+    font-size: var(--text-xl);
+}
+
+h5 {
+    font-size: var(--text-lg);
+}
 
 /* Sidebar */
 #sidebar {
@@ -101,7 +119,9 @@ h5 { font-size: var(--text-lg);}
 
 #project-list {
     display: grid;
-    /* margin-top: 16px; */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 16px 16px;
+    margin-top: 16px;
 }
 
 #content {
@@ -121,7 +141,7 @@ main header button {
     background: var(--background-100);
     border-radius: 8px;
     cursor: pointer;
-    padding: 16px;
+    padding: 8px;
 }
 
 .project-card:hover {
@@ -143,7 +163,7 @@ main header button {
     flex-direction: column;
     row-gap: 20px;
     align-items: start;
-    padding: 30px 20px;
+    padding: 16px 16px;
 }
 
 .card-property {
@@ -156,9 +176,103 @@ main header button {
 div.card-property>p:first-child {
     color: var(--primary-grey);
 }
+
 .card-intial {
     background-color: #ca8134;
-    padding: 8px;
+    padding: 12px;
     border-radius: 8px;
     aspect-ratio: 1;
+}
+
+/* Forms */
+
+dialog {
+    background-color: transparent;
+    border: none;
+    margin: auto;
+
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+}
+
+form {
+    width: 450px;
+    border-radius: 16px;
+    background-color: var(--background-100);
+    color: white;
+}
+
+form h2 {
+    padding: 20px;
+    border-bottom: 2px solid var(--background-200);
+}
+
+form .input-list {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    row-gap: 24px;
+
+}
+
+form .form-buttons-container {
+    display: flex;
+    column-gap: 16px;
+    justify-content: flex-end;
+    padding: 0 20px 20px 20px;
+
+} 
+
+form .form-field-container {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: var(--font-base);
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: rgba(150, 150, 150, 1);
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+input,
+textarea,
+select {
+    color: white;
+    background-color: var(--background-200);
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: var(--text-base);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid var(--primary);
+}
+
+.input-tip {
+    font-style: italic;
+    color: var(--background-100);
+    margin-top: 4px;
+}
+
+button.button-cancel {
+    background-color:transparent;
+}
+button.button-cancel:hover {
+    background-color:var(--primary-red) ;
+}
+button.button-accept {
+    background-color:transparent;
+}
+button.button-accept:hover {
+    background-color:var(--primary-green) ;
 }
