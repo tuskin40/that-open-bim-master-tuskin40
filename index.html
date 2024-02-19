@@ -4,10 +4,10 @@
     <head>
         <title></title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="style.css" rel="stylesheet">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+        <link href="style.css" rel="stylesheet">
     </head>
 
     <body>
@@ -20,228 +20,387 @@
         </aside>
         <main id="content">
 
-            <dialog id="new-project-modal">
-                <form action="">
-                    <h2>New Project</h2>
-                    <div class="input-list">
-                        <div class="form-field-container">
-                            <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                            <input type="text">
-                            <span class="input-tip">TIP: Give it a short name</span>
+            <!-- PROJECT LIST -->
+            <div id="projects-page" class="page" ">
+                <!-- <div id=" projects-page" class="page"> -->
+                <dialog id="new-project-modal">
+                    <form action="">
+                        <h2>New Project</h2>
+                        <div class="input-list">
+                            <div class="form-field-container">
+                                <label><span class="material-symbols-outlined">apartment</span>Name</label>
+                                <input type="text">
+                                <span class="input-tip">TIP: Give it a short name</span>
+                            </div>
+                            <div class="form-field-container">
+                                <label><span class="material-symbols-outlined">description</span>Description</label>
+                                <textarea cols="30" rows="5" placeholder="Short description of the project"></textarea>
+                            </div>
+                            <div class="form-field-container">
+                                <label><span class="material-symbols-outlined">account_circle</span>Role</label>
+                                <select>
+                                    <option>Architect</option>
+                                    <option>Engineer</option>
+                                    <option>Developer</option>
+                                </select>
+                            </div>
+                            <div class="form-field-container">
+                                <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
+                                <select>
+                                    <option>Pending</option>
+                                    <option>Active</option>
+                                    <option>Finished</option>
+                                </select>
+                            </div>
+                            <div class="form-field-container">
+                                <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
+                                <input type="date">
+                            </div>
+
                         </div>
-                        <div class="form-field-container">
-                            <label><span class="material-symbols-outlined">description</span>Description</label>
-                            <textarea cols="30" rows="5" placeholder="Short description of the project"></textarea>
+                        <div class="form-buttons-container">
+                            <button class="btn-secondary-cancel">Cancel</button>
+                            <button class="btn-secondary-accept">Accept</button>
                         </div>
-                        <div class="form-field-container">
-                            <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                            <select>
-                                <option>Architect</option>
-                                <option>Engineer</option>
-                                <option>Developer</option>
-                            </select>
+                    </form>
+                </dialog>
+
+                <header>
+                    <h2>Projects</h2>
+                    <div>
+                        <button><span class="material-symbols-outlined">add</span>New Project</button>
+                    </div>
+                </header>
+                <div id="project-list">
+                    <div class="project-card">
+                        <div class="card-header">
+                            <p class="card-initial">HC</p>
+                            <div>
+                                <h5>Project Name</h5>
+                                <p>Project Description</p>
+                            </div>
                         </div>
-                        <div class="form-field-container">
-                            <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
-                            <select>
-                                <option>Pending</option>
-                                <option>Active</option>
-                                <option>Finished</option>
-                            </select>
-                        </div>
-                        <div class="form-field-container">
-                            <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input type="date">
+                        <div class="card-content">
+                            <div class="card-property">
+                                <p>Status</p>
+                                <p>Active</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Role</p>
+                                <p>Engineer</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Cost</p>
+                                <p>$ 2'000'000</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Estimated Progress</p>
+                                <p>43%</p>
+                            </div>
+
                         </div>
 
                     </div>
-                    <div class="form-buttons-container">
-                        <button class="button-cancel">Cancel</button>
-                        <button class="button-accept">Accept</button>
-                    </div>
-                </form>
-            </dialog>
+                    <div class="project-card">
+                        <div class="card-header">
+                            <p class="card-initial">HC</p>
+                            <div>
+                                <h5>Project Name</h5>
+                                <p>Project Description</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-property">
+                                <p>Status</p>
+                                <p>Active</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Role</p>
+                                <p>Engineer</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Cost</p>
+                                <p>$ 2'000'000</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Estimated Progress</p>
+                                <p>43%</p>
+                            </div>
 
-            <header>
-                <h2>Projects</h2>
-                <div>
-                    <button><span class="material-symbols-outlined">add</span>New Project</button>
+                        </div>
+
+                    </div>
+                    <div class="project-card">
+                        <div class="card-header">
+                            <p class="card-initial">HC</p>
+                            <div>
+                                <h5>Project Name</h5>
+                                <p>Project Description</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-property">
+                                <p>Status</p>
+                                <p>Active</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Role</p>
+                                <p>Engineer</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Cost</p>
+                                <p>$ 2'000'000</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Estimated Progress</p>
+                                <p>43%</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="project-card">
+                        <div class="card-header">
+                            <p class="card-initial">HC</p>
+                            <div>
+                                <h5>Project Name</h5>
+                                <p>Project Description</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-property">
+                                <p>Status</p>
+                                <p>Active</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Role</p>
+                                <p>Engineer</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Cost</p>
+                                <p>$ 2'000'000</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Estimated Progress</p>
+                                <p>43%</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="project-card">
+                        <div class="card-header">
+                            <p class="card-initial">HC</p>
+                            <div>
+                                <h5>Project Name</h5>
+                                <p>Project Description</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-property">
+                                <p>Status</p>
+                                <p>Active</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Role</p>
+                                <p>Engineer</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Cost</p>
+                                <p>$ 2'000'000</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Estimated Progress</p>
+                                <p>43%</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="project-card">
+                        <div class="card-header">
+                            <p class="card-initial">HC</p>
+                            <div>
+                                <h5>Project Name</h5>
+                                <p>Project Description</p>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-property">
+                                <p>Status</p>
+                                <p>Active</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Role</p>
+                                <p>Engineer</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Cost</p>
+                                <p>$ 2'000'000</p>
+                            </div>
+                            <div class="card-property">
+                                <p>Estimated Progress</p>
+                                <p>43%</p>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
-            </header>
-            <div id="project-list">
-                <div class="project-card">
-                    <div class="card-header">
-                        <p class="card-intial">HC</p>
-                        <div>
-                            <h5>Project Name</h5>
-                            <p>Project Description</p>
+            </div>
+
+            <!-- PROJECT DETAILS  -->
+            <div id="project-details" class="page">
+                <header>
+                    <div>
+                        <h3>Hospital Centre</h3>
+                        <p style="color: var(--primary-grey);">Community Hopital location</p>
+                    </div>
+                </header>
+                <div class="main-page-content">
+                    <div style="display: flex; flex-direction: column; row-gap: 30px;">
+                        <div class="dashboard-card"
+                            style="padding: 16px; display: flex;flex-direction: column; row-gap: 16px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <p class="card-initial">HC</p>
+                                <button class="btn-secondary">Edit</button>
+                            </div>
+                            <div>
+                                <h5>Hospital Centre</h5>
+                                <p style="color: var(--primary-grey);">Community Hopital location</p>
+                            </div>
+                            <div style="display: flex; column-gap: 8px;justify-content: space-between;">
+                                <div>
+                                    <p style="color: var(--primary-grey); font-size: var(--text-sm);">Status</p>
+                                    <p>Active</p>
+                                </div>
+                                <div>
+                                    <p style="color: var(--primary-grey);font-size: var(--text-sm);">Cost</p>
+                                    <p>$ 2'345'678</p>
+                                </div>
+                                <div>
+                                    <p style="color: var(--primary-grey);font-size: var(--text-sm);">Role</p>
+                                    <p>Egnineer</p>
+                                </div>
+                                <div>
+                                    <p style="color: var(--primary-grey); font-size: var(--text-sm);">Finish Date</p>
+                                    <p>2023-05-01</p>
+                                </div>
+                            </div>
+                            <div style="background-color: #404040; border-radius: 9999px; overflow: auto;">
+                                <div style="width: 80%; background-color: green; padding: 4px 0; text-align: center;">
+                                    80%</div>
+                            </div>
+                        </div>
+                        <div class="dashboard-card" style="flex-grow: 1;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; padding: 16px 8px;">
+                                <h4>To Do</h4>
+                                <div
+                                    style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                                    <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
+                                    <input type="text" placeholder="Search To-Do by name" style="width: 100%;">
+                                    <span class="material-symbols-outlined" style="cursor: pointer;">add</span>
+                                </div>
+                            </div>
+                            <div style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
+                                <div class="todo-item">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                        <div style="display: flex; align-items: center;">
+                                            <span class="material-symbols-outlined"
+                                                style="padding: 8px; background-color: var(--background-100); border-radius: 8px; margin-right: 8px;">task_alt</span>
+                                            Task that needs to be done
+                                        </div>
+                                        <p style="text-wrap: nowrap;margin-left: 8px;">Fri, 20 sep</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <div class="card-property">
-                            <p>Status</p>
-                            <p>Active</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Role</p>
-                            <p>Engineer</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Cost</p>
-                            <p>$ 2'000'000</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Estimated Progress</p>
-                            <p>43%</p>
-                        </div>
-
-                    </div>
-
+                    <div id="viewer-container" class="dashboard-card">viewer</div>
                 </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <p class="card-intial">HC</p>
-                        <div>
-                            <h5>Project Name</h5>
-                            <p>Project Description</p>
+            </div>
+
+            <!-- USERS LIST -->
+            <div id="users-page" class="page">
+                <header>
+                    <div>
+                        <h3>Users</h3>
+                        <p style="color: var(--primary-grey);">Community Hopital location</p>
+                    </div>
+                </header>
+                <div class="main-page-content">
+                    <div id="user-search" style="margin-top: 16px;">
+                        <div
+                            style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                            <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                                <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
+                                <input type="text" placeholder="Search user" style="width: 100%;">
+                            </div>
+                            <button class="btn-secondary" style="width: 150px;">Add user</button>
                         </div>
                     </div>
-                    <div class="card-content">
-                        <div class="card-property">
-                            <p>Status</p>
-                            <p>Active</p>
+                    <div id="user-list">
+                        <div class="user-card">
+                            <div class="user-card-header">
+                                <img src="./assets/male1084786959533.jpg" alt="">
+                                <div>
+                                    <h5>Tom Jones</h5>
+                                    <p>tpjone123</p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-property">
+                                    <p>Added</p>
+                                    <p>08 Oct, 2021</p>
+                                </div>
+                                <div class="card-property">
+                                    <p>Status</p>
+                                    <p class="user-card-active">Active</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-property">
-                            <p>Role</p>
-                            <p>Engineer</p>
+                        <div class="user-card">
+                            <div class="user-card-header">
+                                <img src="./assets/female20161024704497650.jpg" alt="" width="64px"
+                                    style="border-radius: 32px;">
+                                <div>
+                                    <h5>Verna R Franklin</h5>
+                                    <p>happyslayer</p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-property">
+                                    <p>Added</p>
+                                    <p>06 Nov, 2020</p>
+                                </div>
+                                <div class="card-property">
+                                    <p>Status</p>
+                                    <p class="user-card-inactive">In-Active</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-property">
-                            <p>Cost</p>
-                            <p>$ 2'000'000</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Estimated Progress</p>
-                            <p>43%</p>
+                        <div class="user-card">
+                            <div class="user-card-header">
+                                <img src="./assets/female20171026094405823.jpg" alt="">
+                                <div>
+                                    <h5>Deborah J Donahue</h5>
+                                    <p>jonttu568</p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-property">
+                                    <p>Added</p>
+                                    <p>30 Oct, 2022</p>
+                                </div>
+                                <div class="card-property">
+                                    <p>Status</p>
+                                    <p class="user-card-active">Active</p>
+                                </div>
+                            </div>
                         </div>
 
                     </div>
-
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <p class="card-intial">HC</p>
-                        <div>
-                            <h5>Project Name</h5>
-                            <p>Project Description</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-property">
-                            <p>Status</p>
-                            <p>Active</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Role</p>
-                            <p>Engineer</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Cost</p>
-                            <p>$ 2'000'000</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Estimated Progress</p>
-                            <p>43%</p>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <p class="card-intial">HC</p>
-                        <div>
-                            <h5>Project Name</h5>
-                            <p>Project Description</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-property">
-                            <p>Status</p>
-                            <p>Active</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Role</p>
-                            <p>Engineer</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Cost</p>
-                            <p>$ 2'000'000</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Estimated Progress</p>
-                            <p>43%</p>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <p class="card-intial">HC</p>
-                        <div>
-                            <h5>Project Name</h5>
-                            <p>Project Description</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-property">
-                            <p>Status</p>
-                            <p>Active</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Role</p>
-                            <p>Engineer</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Cost</p>
-                            <p>$ 2'000'000</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Estimated Progress</p>
-                            <p>43%</p>
-                        </div>
-
-                    </div>
-
-                </div>
-                <div class="project-card">
-                    <div class="card-header">
-                        <p class="card-intial">HC</p>
-                        <div>
-                            <h5>Project Name</h5>
-                            <p>Project Description</p>
-                        </div>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-property">
-                            <p>Status</p>
-                            <p>Active</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Role</p>
-                            <p>Engineer</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Cost</p>
-                            <p>$ 2'000'000</p>
-                        </div>
-                        <div class="card-property">
-                            <p>Estimated Progress</p>
-                            <p>43%</p>
-                        </div>
-
-                    </div>
-
                 </div>
             </div>
         </main>

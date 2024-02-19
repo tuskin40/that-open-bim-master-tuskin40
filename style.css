@@ -40,15 +40,14 @@ body {
     grid-template-areas: 'sidebar content';
     height: 100vh;
     background-color: var(--background);
-    color: #fff;
-    margin: 0;
+    color: white;
     font-size: var(--text-base);
 }
 
 button {
     padding: 8px 16px;
     cursor: pointer;
-    height: 40px;
+    height: 32px;
     font-size: var(--text-base);
     color: white;
     border-radius: 16px;
@@ -58,6 +57,18 @@ button {
 
 button:hover {
     background-color: var(--primary-400);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    outline: 2px solid #969696;
+    width: 120px;
+    text-align: center;
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary);
+    outline: none;
 }
 
 h2 {
@@ -74,6 +85,7 @@ h4 {
 
 h5 {
     font-size: var(--text-lg);
+    margin-bottom: 4px;
 }
 
 /* Sidebar */
@@ -135,6 +147,13 @@ main header button {
     align-items: center;
 }
 
+/* Page */
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 /* Cards */
 
 .project-card {
@@ -177,7 +196,7 @@ div.card-property>p:first-child {
     color: var(--primary-grey);
 }
 
-.card-intial {
+.card-initial {
     background-color: #ca8134;
     padding: 12px;
     border-radius: 8px;
@@ -224,7 +243,7 @@ form .form-buttons-container {
     justify-content: flex-end;
     padding: 0 20px 20px 20px;
 
-} 
+}
 
 form .form-field-container {
     display: flex;
@@ -264,15 +283,115 @@ select:focus {
     margin-top: 4px;
 }
 
-button.button-cancel {
-    background-color:transparent;
+.btn-secondary-cancel {
+    background-color: transparent;
+    outline: 2px solid #969696;
+    width: 100px;
+
 }
-button.button-cancel:hover {
-    background-color:var(--primary-red) ;
+
+.btn-secondary-cancel:hover {
+    background-color: var(--primary-red);
+    outline: none;
 }
-button.button-accept {
-    background-color:transparent;
+
+.btn-secondary-accept {
+    background-color: transparent;
+    outline: 2px solid #969696;
+    width: 100px;
 }
-button.button-accept:hover {
-    background-color:var(--primary-green) ;
+
+.btn-secondary-accept:hover {
+    background-color: var(--primary-green);
+    outline: none;
 }
+
+/* Project Details page */
+
+.dashboard-card {
+    background-color: var(--background-100);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px 16px 16px;
+}
+
+#project-details>.main-page-content {
+    display: grid;
+    grid-template-columns: 425px 1fr;
+    gap: 28px;
+    height: 100%;
+    padding: 20px 40px;
+}
+
+/* TODO ITEMS */
+
+.todo-item {
+    padding: 20px;
+    background-color: var(--background-200);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.todo-item:hover {
+    background-color: var(--primary);
+
+}
+
+
+/* USER */
+
+#user-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px 16px;
+    margin-top: 16px;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 16px;
+    background-color: var(--background-200);
+    cursor: pointer;
+
+}
+.user-card:hover {
+    outline: 2px solid var(--primary);
+}
+
+.user-card-header {
+    display: flex;
+    align-items: center;
+    
+}
+
+.user-card-header img {
+    border-radius: 32px;
+    width: 64px;
+    padding: 16px;
+}
+
+.user-card-details,
+.user-card-header div {
+    padding: 16px;
+}
+
+.user-card-active, .user-card-inactive {
+    padding: 4px;
+    border-radius: 8px;
+    width: 64px;
+    text-align: center;
+}
+
+.user-card-active{
+    background-color: var(--primary-green);
+}
+.user-card-inactive {
+    background-color: var(--primary-red);
+}
+
+/* div {
+    border: 1px solid red;
+} */
