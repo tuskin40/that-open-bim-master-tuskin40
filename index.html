@@ -8,6 +8,7 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
         <link href="style.css" rel="stylesheet">
+        <link rel="shortcut icon" type="image/png" href="./assets/favicon.png">
     </head>
 
     <body>
@@ -21,26 +22,26 @@
         <main id="content">
 
             <!-- PROJECT LIST -->
-            <div id="projects-page" class="page" style="display: none;">
+            <div id="projects-page" class="page" style="">
                 <!-- <div id=" projects-page" class="page"> -->
 
                     <!-- PROJECT DETAILS MODAL FORM -->
                 <dialog id="new-project-modal">
-                    <form action="">
+                    <form action="" id="new-project-form">
                         <h2>New Project</h2>
                         <div class="input-list">
                             <div class="form-field-container">
                                 <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                                <input type="text">
+                                <input name="name" type="text" placeholder="what is your project's name">
                                 <span class="input-tip">TIP: Give it a short name</span>
                             </div>
                             <div class="form-field-container">
                                 <label><span class="material-symbols-outlined">description</span>Description</label>
-                                <textarea cols="30" rows="5" placeholder="Short description of the project"></textarea>
+                                <textarea name="description" cols="30" rows="5" placeholder="Short description of the project"></textarea>
                             </div>
                             <div class="form-field-container">
                                 <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                                <select>
+                                <select name="userRole">
                                     <option>Architect</option>
                                     <option>Engineer</option>
                                     <option>Developer</option>
@@ -48,7 +49,7 @@
                             </div>
                             <div class="form-field-container">
                                 <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
-                                <select>
+                                <select name="status">
                                     <option>Pending</option>
                                     <option>Active</option>
                                     <option>Finished</option>
@@ -56,7 +57,7 @@
                             </div>
                             <div class="form-field-container">
                                 <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                                <input type="date">
+                                <input name="finishDate" type="date">
                             </div>
 
                         </div>
@@ -70,7 +71,7 @@
                 <header>
                     <h2>Projects</h2>
                     <div>
-                        <button><span class="material-symbols-outlined">add</span>New Project</button>
+                        <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New Project</button>
                     </div>
                 </header>
                 <div id="project-list">
@@ -408,7 +409,7 @@
             </div>
 
             <!-- USERS LIST - LIST TYPE -->
-            <div id="users-page" class="page">
+            <div id="users-page" class="page"  style="display: none;">
                 <header>
                     <div>
                         <h3>Users</h3>
@@ -532,6 +533,7 @@
                 </form>
             </dialog>
         </main>
+        <script type="module" src="./src/index.ts"></script>
     </body>
 
 </html>
