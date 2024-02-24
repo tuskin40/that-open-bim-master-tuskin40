@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
 
 /* document.getElementById("new-project-modal").showModal() */
+/* document.getElementById("new-user-modal").showModal() */
 
 
 
@@ -339,9 +340,9 @@ select:focus {
 }
 
 
-/* USER */
+/* USER CARD TYPE */
 
-#user-list {
+#user-card-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 16px 16px;
@@ -390,6 +391,44 @@ select:focus {
 }
 .user-card-inactive {
     background-color: var(--primary-red);
+}
+
+ /* USER LIST TYPE */
+
+#user-list li {
+    list-style-type: none;
+    cursor: pointer;
+    display: flex;
+    column-gap: 20;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--background-100);
+    margin-top: 16px;
+    border-radius: 8px;
+
+}
+
+#user-list li:hover {
+    outline: 2px solid var(--primary);
+}
+
+#user-list img {
+    border-radius: 32px;
+    width: 64px;
+    padding: 16px;
+}
+
+.user-list-user, .user-list-details {
+    display: flex;
+    align-items: center;
+    column-gap: 32px;
+} 
+
+.user-list-user {
+    width: 400px;
+}
+.user-list-details div p:first-child {
+    margin-bottom: 8px;
 }
 
 /* div {

@@ -21,8 +21,10 @@
         <main id="content">
 
             <!-- PROJECT LIST -->
-            <div id="projects-page" class="page" ">
+            <div id="projects-page" class="page" style="display: none;">
                 <!-- <div id=" projects-page" class="page"> -->
+
+                    <!-- PROJECT DETAILS MODAL FORM -->
                 <dialog id="new-project-modal">
                     <form action="">
                         <h2>New Project</h2>
@@ -249,8 +251,8 @@
                 </div>
             </div>
 
-            <!-- PROJECT DETAILS  -->
-            <div id="project-details" class="page">
+            <!-- PROJECT DETAILS -->
+            <div id="project-details" class="page" style="display: none;">
                 <header>
                     <div>
                         <h3>Hospital Centre</h3>
@@ -321,8 +323,8 @@
                 </div>
             </div>
 
-            <!-- USERS LIST -->
-            <div id="users-page" class="page">
+            <!-- USERS LIST - CARD TYPE -->
+            <div id="users-page" class="page" style="display: none;">
                 <header>
                     <div>
                         <h3>Users</h3>
@@ -333,14 +335,15 @@
                     <div id="user-search" style="margin-top: 16px;">
                         <div
                             style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
-                            <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                            <div
+                                style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
                                 <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                 <input type="text" placeholder="Search user" style="width: 100%;">
                             </div>
                             <button class="btn-secondary" style="width: 150px;">Add user</button>
                         </div>
                     </div>
-                    <div id="user-list">
+                    <div id="user-card-list">
                         <div class="user-card">
                             <div class="user-card-header">
                                 <img src="./assets/male1084786959533.jpg" alt="">
@@ -376,7 +379,7 @@
                                 </div>
                                 <div class="card-property">
                                     <p>Status</p>
-                                    <p class="user-card-inactive">In-Active</p>
+                                    <p class="user-card-inactive">Pending</p>
                                 </div>
                             </div>
                         </div>
@@ -403,6 +406,131 @@
                     </div>
                 </div>
             </div>
+
+            <!-- USERS LIST - LIST TYPE -->
+            <div id="users-page" class="page">
+                <header>
+                    <div>
+                        <h3>Users</h3>
+                        <p style="color: var(--primary-grey);">Community Hopital location</p>
+                    </div>
+                </header>
+                <div class="main-page-content">
+                    <div id="user-search" style="margin-top: 16px;">
+                        <div
+                            style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                            <div
+                                style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                                <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
+                                <input type="text" placeholder="Search user" style="width: 100%;">
+                            </div>
+                            <button class="btn-secondary" style="width: 150px;">Add user</button>
+                        </div>
+                    </div>
+
+                    <ul id="user-list">
+                        <li>
+                            <div class="user-list-user">
+                                <img src="./assets/male1084786959533.jpg" alt="">
+                                <div>
+                                    <h5>Tom Jones</h5>
+                                    <p>tpjone123</p>
+                                </div>
+                            </div>
+                            <div class="user-list-details">
+                                <div>
+                                    <p>Added</p>
+                                    <p>08 Oct, 2021</p>
+                                </div>
+                                <div>
+                                    <p>Status</p>
+                                    <p class="user-card-active">Active</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-list-user">
+
+                                <img src="./assets/female20161024704497650.jpg" alt="" width="64px"
+                                    style="border-radius: 32px;">
+                                <div>
+                                    <h5>Verna R Franklin</h5>
+                                    <p>happyslayer</p>
+                                </div>
+                            </div>
+                            <div class="user-list-details">
+                                <div>
+                                    <p>Added</p>
+                                    <p>06 Nov, 2020</p>
+                                </div>
+                                <div>
+                                    <p>Status</p>
+                                    <p class="user-card-inactive">In-Activee</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-list-user">
+                                <img src="./assets/female20171026094405823.jpg" alt="">
+                                <div>
+                                    <h5>Deborah J Donahue</h5>
+                                    <p>jonttu568</p>
+                                </div>
+                            </div>
+                            <div class="user-list-details">
+                                <div>
+                                    <p>Added</p>
+                                    <p>30 Oct, 2022</p>
+                                </div>
+                                <div>
+                                    <p>Status</p>
+                                    <p class="user-card-active">Active</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- USER DETAILS FORM -->
+            <dialog id="new-user-modal">
+                <form action="">
+                    <h2>New Use</h2>
+                    <div class="input-list">
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">person</span>Name</label>
+                            <input type="text">
+                            <span class="input-tip">TIP: Give it a short name</span>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">tv_signin</span>Username</label>
+                            <input type="text">
+                            <span class="input-tip">TIP: Give it a short name</span>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">account_circle</span>Role</label>
+                            <select>
+                                <option>Architect</option>
+                                <option>Engineer</option>
+                                <option>Developer</option>
+                            </select>
+                        </div>
+                        <!-- <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
+                            <select>
+                                <option>Pending</option>
+                                <option>Active</option>
+                                <option>Finished</option>
+                            </select>
+                        </div> -->
+                    </div>
+                    <div class="form-buttons-container">
+                        <button class="btn-secondary-cancel">Cancel</button>
+                        <button class="btn-secondary-accept">Accept</button>
+                    </div>
+                </form>
+            </dialog>
         </main>
     </body>
 
