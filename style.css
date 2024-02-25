@@ -130,7 +130,7 @@ h5 {
 
 /* Content */
 
-#project-list {
+#projects-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 16px 16px;
