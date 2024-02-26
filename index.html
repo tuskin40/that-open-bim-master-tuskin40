@@ -22,52 +22,9 @@
         <main id="content">
 
             <!-- PROJECT LIST -->
-            <div id="projects-page" class="page" style="">
+            <div id="projects-page" class="page">
                 <!-- <div id=" projects-page" class="page"> -->
 
-                <!-- PROJECT DETAILS MODAL FORM -->
-                <dialog id="new-project-modal">
-                    <form action="" id="new-project-form">
-                        <h2>New Project</h2>
-                        <div class="input-list">
-                            <div class="form-field-container">
-                                <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                                <input name="name" type="text" placeholder="what is your project's name">
-                                <span class="input-tip">TIP: Give it a short name</span>
-                            </div>
-                            <div class="form-field-container">
-                                <label><span class="material-symbols-outlined">description</span>Description</label>
-                                <textarea name="description" cols="30" rows="5"
-                                    placeholder="Short description of the project"></textarea>
-                            </div>
-                            <div class="form-field-container">
-                                <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                                <select name="userRole">
-                                    <option>Architect</option>
-                                    <option>Engineer</option>
-                                    <option>Developer</option>
-                                </select>
-                            </div>
-                            <div class="form-field-container">
-                                <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
-                                <select name="status">
-                                    <option>Pending</option>
-                                    <option>Active</option>
-                                    <option>Finished</option>
-                                </select>
-                            </div>
-                            <div class="form-field-container">
-                                <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                                <input name="finishDate" type="date">
-                            </div>
-
-                        </div>
-                        <div class="form-buttons-container">
-                            <button id="cancel-new-project-button" type="button" class="btn-secondary-cancel">Cancel</button>
-                            <button type="submit" class="btn-secondary-accept">Accept</button>
-                        </div>
-                    </form>
-                </dialog>
 
                 <header>
                     <h2>Projects</h2>
@@ -109,6 +66,66 @@
                 </div>
             </div>
 
+            <!-- PROJECT DETAILS MODAL FORM -->
+            <dialog id="new-project-modal">
+                <form action="" id="new-project-form">
+                    <h2>New Project</h2>
+                    <div class="input-list">
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">apartment</span>Name</label>
+                            <input name="name" type="text" placeholder="what is your project's name">
+                            <span class="input-tip">TIP: Give it a short name</span>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">description</span>Description</label>
+                            <textarea name="description" cols="30" rows="5"
+                                placeholder="Short description of the project"></textarea>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">account_circle</span>Role</label>
+                            <select name="userRole">
+                                <option>Architect</option>
+                                <option>Engineer</option>
+                                <option>Developer</option>
+                            </select>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
+                            <select name="status">
+                                <option>Pending</option>
+                                <option>Active</option>
+                                <option>Finished</option>
+                            </select>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
+                            <input name="finishDate" type="date">
+                        </div>
+
+                    </div>
+                    <div class="form-buttons-container">
+                        <button id="cancel-new-project-button" type="button"
+                            class="btn-secondary-cancel">Cancel</button>
+                        <button type="submit" class="btn-secondary-accept">Accept</button>
+                    </div>
+                </form>
+            </dialog>
+
+            <!-- ERROR MODAL ALERT -->
+            <dialog id="error-modal">
+                <div>
+                <img src="./assets/error.svg" alt="error symbol"
+                    style="width: 64px; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
+
+                <h2>Oops...</h2>
+                <h5 id="error-message"></h5>
+                <div class="form-buttons-container">
+                    <button id="error-modal-button" class="btn-secondary-accept">Close</button>
+                </div>
+            </div>
+            </dialog>
+
+            
             <!-- PROJECT DETAILS -->
             <div id="project-details" class="page" style="display: none;">
                 <header>
@@ -351,7 +368,7 @@
                 </div>
             </div>
 
-            <!-- USER DETAILS FORM -->
+            <!-- USER DETAILS MODAL FORM -->
             <dialog id="new-user-modal">
                 <form action="">
                     <h2>New Use</h2>
@@ -389,6 +406,10 @@
                     </div>
                 </form>
             </dialog>
+
+
+
+
         </main>
         <script type="module" src="./src/index.ts"></script>
     </body>

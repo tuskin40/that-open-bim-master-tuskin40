@@ -55,9 +55,19 @@ if (cancelFormBtn) {
     console.warn("New cancel-new-project-button was not found")
 }
 
+// Error modal button
+const errorModalBtn = document.getElementById("error-modal-button")
+if (errorModalBtn) {
+    errorModalBtn.addEventListener("click", () => {toggleModal("error-modal")})
+} else {
+    console.warn("New error-modal-button was not found")
+}
+
 // Project Manager code
 const projectListUI = document.getElementById("projects-list") as HTMLElement
 const projectsManager = new ProjectsManager(projectListUI)
+
+// Error message code
 
 // Read form data and create project card code
 const projectForm = document.getElementById("new-project-form")
@@ -74,10 +84,24 @@ if (projectForm && projectForm instanceof HTMLFormElement)
             "status": formData.get("status") as ProjectStatus,
             "finishDate": new Date(formData.get("finishDate") as string),
         }
-        const myProject = projectsManager.newProject(projectObj)
-        projectForm.reset()
-        toggleModal("new-project-modal")
-        console.log("Project data:", myProject)
+
+        try {
+            const myProject = projectsManager.newProject(projectObj)
+            projectForm.reset()
+            toggleModal("new-project-modal")
+            console.log("Project cost:", new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+                projectsManager.totalProjectsCost(),
+              ))
+        } catch (err){
+            // alert(err)
+            console.error(err)
+            // projectForm.reset()
+            // toggleModal("new-project-modal")
+            const errorMsg = document.getElementById("error-message") as HTMLElement
+            errorMsg.innerHTML = err
+            showModal("error-modal")
+        }
+
     })
 
 } else {

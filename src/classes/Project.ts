@@ -1,3 +1,5 @@
+import { v4 as uuidv4} from "uuid"
+
 export type ProjectStatus = "pending" | "active" | "finished"
 export type UserRole = "architect" | "engineer" | "developer"
 
@@ -18,8 +20,20 @@ export class Project implements IProject {
 
     // Class internal
     ui: HTMLDivElement
-    cost: number     = 0
+    cost: number     = Math.floor(Math.random() * Math.pow(10,7)) // Remove
     progress: number = 0
+    id: string
+
+    costCurrencyCH(amount: number){
+        return new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(
+            amount,
+          )
+    }
+    costCurrencyUS(amount: number){
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+            amount,
+          )
+    }
 
     constructor(data: IProject ) {
         // project data definition
@@ -28,6 +42,7 @@ export class Project implements IProject {
         this.status         = data.status
         this.userRole       = data.userRole
         this.finishDate     = data.finishDate
+        this.id             = uuidv4()
         this.setUI()
     }
 
@@ -56,7 +71,7 @@ export class Project implements IProject {
             </div>
             <div class="card-property">
                 <p>Cost</p>
-                <p>$${this.cost}</p>
+                <p>${this.costCurrencyUS(this.cost)}</p>
             </div>
             <div class="card-property">
                 <p>Estimated Progress</p>

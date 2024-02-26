@@ -3,6 +3,7 @@
 
 /* document.getElementById("new-project-modal").showModal() */
 /* document.getElementById("new-user-modal").showModal() */
+/* document.getElementById("error-modal").showModal() */
 
 
 
@@ -166,6 +167,7 @@ main header button {
 
 .project-card:hover {
     outline: 2px solid var(--primary);
+    /* box-shadow: rgba(123, 123, 124, 0.3) 0px 2px 4px 0px, rgba(87, 96, 124, 0.15) 0px 4px 8px 4px; */
 }
 
 .card-header {
@@ -429,6 +431,20 @@ select:focus {
 }
 .user-list-details div p:first-child {
     margin-bottom: 8px;
+}
+
+/* error alert box */
+#error-modal > div{
+    width: 450px;
+    border-radius: 16px;
+    border: 2px solid var(--primary-red);
+    background-color: var(--background-100);
+    color: white;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    align-items: center;
 }
 
 /* div {
