@@ -37,12 +37,18 @@ export class Project implements IProject {
 
     constructor(data: IProject ) {
         // project data definition
-        this.name           = data.name
-        this.description    = data.description
-        this.status         = data.status
-        this.userRole       = data.userRole
-        this.finishDate     = data.finishDate
-        this.id             = uuidv4()
+        for (const key in data){
+            if (key != 'ui'){
+                this[key] = data[key]
+                console.log(data[key])
+            }
+        }
+        // this.name           = data.name
+        // this.description    = data.description
+        // this.status         = data.status
+        // this.userRole       = data.userRole
+        // this.finishDate     = data.finishDate
+        if(!this.id) {this.id = uuidv4()}
         this.setUI()
     }
 

@@ -47,6 +47,22 @@ if (newProjectBtn) {
     console.warn("New project button was not found")
 }
 
+// New Project button code
+const exportProjectBtn = document.getElementById("export-project-btn")
+if (exportProjectBtn) {
+    exportProjectBtn.addEventListener("click", () => {projectsManager.exportToJSON()})
+} else {
+    console.warn("export-project-btn button was not found")
+}
+
+// New Project button code
+const importProjectBtn = document.getElementById("import-project-btn")
+if (importProjectBtn) {
+    importProjectBtn.addEventListener("click", () => {projectsManager.importFromJSON()})
+} else {
+    console.warn("import-project-btn button was not found")
+}
+
 // Cancel New project button
 const cancelFormBtn = document.getElementById("cancel-new-project-button")
 if (cancelFormBtn) {
