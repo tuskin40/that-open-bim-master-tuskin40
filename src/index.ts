@@ -39,6 +39,22 @@ function toggleModal(id: string){
 }
 
 
+// Navigation Project button code
+const allProjectBtn = document.getElementById("projects-btn")
+if (allProjectBtn) {
+    allProjectBtn.addEventListener("click", () => {
+    const projectPage = document.getElementById("projects-page")
+    const detailsPage = document.getElementById("project-details")
+    if (!projectPage || !detailsPage) {return}
+
+    projectPage.style.display = "flex"
+    detailsPage.style.display = "none"
+    
+    })
+} else {
+    console.warn("New project button was not found")
+}
+
 // New Project button code
 const newProjectBtn = document.getElementById("new-project-btn")
 if (newProjectBtn) {
@@ -47,7 +63,7 @@ if (newProjectBtn) {
     console.warn("New project button was not found")
 }
 
-// New Project button code
+// Export button code
 const exportProjectBtn = document.getElementById("export-project-btn")
 if (exportProjectBtn) {
     exportProjectBtn.addEventListener("click", () => {projectsManager.exportToJSON()})
@@ -55,7 +71,7 @@ if (exportProjectBtn) {
     console.warn("export-project-btn button was not found")
 }
 
-// New Project button code
+// Import button code
 const importProjectBtn = document.getElementById("import-project-btn")
 if (importProjectBtn) {
     importProjectBtn.addEventListener("click", () => {projectsManager.importFromJSON()})
