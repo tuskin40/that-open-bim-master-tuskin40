@@ -52,6 +52,7 @@ export class Project implements IProject {
         this.setUI()
     }
 
+    // Create the project card UI
     setUI() {
 
         if (this.ui) {return} // prevents from code running again after the ui has already been created
