@@ -1,11 +1,11 @@
-import { v4 as uuidv4} from "uuid"
+import { v4 as uuidv4 } from "uuid"
 
 export type ProjectStatus = "pending" | "active" | "finished"
 export type UserRole = "architect" | "engineer" | "developer"
 
 export interface IProject {
     name: string
-    description:string
+    description: string
     status: ProjectStatus
     userRole: UserRole
     finishDate: Date
@@ -13,34 +13,34 @@ export interface IProject {
 export class Project implements IProject {
     // to satisfy the IProject
     name: string
-    description:string
+    description: string
     status: "pending" | "active" | "finished"
     userRole: "architect" | "engineer" | "developer"
     finishDate: Date
 
     // Class internal
     ui: HTMLDivElement
-    cost: number     = Math.floor(Math.random() * Math.pow(10,7)) // Remove
+    cost: number = Math.floor(Math.random() * Math.pow(10, 7)) // Remove
     progress: number = 0
     id: string
 
-    costCurrencyCH(amount: number){
+    costCurrencyCH(amount: number) {
         return new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(
             amount,
-          )
+        )
     }
-    costCurrencyUS(amount: number){
+    costCurrencyUS(amount: number) {
         return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
             amount,
-          )
+        )
     }
 
-    constructor(data: IProject ) {
+    constructor(data: IProject) {
         // project data definition
-        for (const key in data){
-            if (key != 'ui'){
+        for (const key in data) {
+            if (key != 'ui') {
                 this[key] = data[key]
-                console.log(data[key])
+                // console.log(data[key])
             }
         }
         // this.name           = data.name
@@ -48,18 +48,18 @@ export class Project implements IProject {
         // this.status         = data.status
         // this.userRole       = data.userRole
         // this.finishDate     = data.finishDate
-        if(!this.id) {this.id = uuidv4()}
+        if (!this.id) { this.id = uuidv4() }
         this.setUI()
     }
 
     // Create the project card UI
     setUI() {
 
-        if (this.ui) {return} // prevents from code running again after the ui has already been created
+        if (this.ui) { return } // prevents from code running again after the ui has already been created
 
-        this.ui             = document.createElement("div")
-        this.ui.className   = "project-card"
-        this.ui.innerHTML   = `                    
+        this.ui = document.createElement("div")
+        this.ui.className = "project-card"
+        this.ui.innerHTML = `                    
         <div class="card-header">
             <p class="card-initial">HC</p>
             <div>
