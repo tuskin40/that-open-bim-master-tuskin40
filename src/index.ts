@@ -6,6 +6,8 @@ import { ProjectsManager } from "./classes/ProjectsManager"
 //     modal.showModal()
 // }
 
+//---- GENERAL FUNCTIONS 
+
 // functions for modal form display
 function showModal(id: string) {
     const modal = document.getElementById(id)
@@ -38,6 +40,31 @@ function toggleModal(id: string) {
     }
 }
 
+function checkInputLength(id: string) {
+    const inputElement = document.getElementById(id) as HTMLInputElement;
+    if (!inputElement){return}
+    
+    const inputValue = inputElement.value;
+
+    if (inputValue.length < 5) {
+        inputElement.classList.add('error');
+    } else {
+        inputElement.classList.remove('error');
+    }
+}
+
+const newProjectInput = document.getElementById("new-project-name-input")
+if (newProjectInput) {
+    newProjectInput.addEventListener('focus', () => {
+        checkInputLength(newProjectInput.id)
+    })
+    newProjectInput.addEventListener('input', () => {
+        checkInputLength(newProjectInput.id)
+    })
+}
+
+//---- BUTTON FUNCTIONS 
+
 
 // Navigation Project button code
 const allProjectBtn = document.getElementById("projects-btn")
@@ -58,10 +85,44 @@ if (allProjectBtn) {
 // New Project button code
 const newProjectBtn = document.getElementById("new-project-btn")
 if (newProjectBtn) {
-    newProjectBtn.addEventListener("click", () => { toggleModal("new-project-modal") })
+    newProjectBtn.addEventListener("click", () => { 
+        const newProjectForm = document.getElementById("new-project-form")
+        const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
+        finishDateInput.value = new Date().toISOString().split('T')[0];
+        toggleModal("new-project-modal") 
+    })
 } else {
     console.warn("New project button was not found")
 }
+
+// Project Edit button
+const editProjectBtn = document.getElementById("project-edit-btn")
+if (editProjectBtn) {
+    editProjectBtn.addEventListener("click", () => {
+        // const newProjectForm = document.getElementById("new-project-form")
+        // const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
+        // finishDateInput.value = new Date().toISOString().split('T')[0];
+        // toggleModal("new-project-modal")
+    })
+} else {
+    console.warn("New project button was not found")
+}
+
+
+// Add Project-todo button
+const addProjectTodoBtn = document.getElementById("add-todo-btn")
+if (addProjectTodoBtn) {
+    addProjectTodoBtn.addEventListener("click", () => {
+        // const newProjectForm = document.getElementById("new-project-form")
+        // const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
+        // finishDateInput.value = new Date().toISOString().split('T')[0];
+        // toggleModal("new-project-modal")
+    })
+} else {
+    console.warn("New project button was not found")
+}
+
+
 
 // Export button code
 const exportProjectBtn = document.getElementById("export-project-btn")
@@ -137,7 +198,6 @@ if (projectForm && projectForm instanceof HTMLFormElement) {
 
 } else {
     console.warn("The project from was not found. check the ID!")
-
 }
 
 // load data when document is loaded

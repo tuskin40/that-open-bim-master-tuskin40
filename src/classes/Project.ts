@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from "uuid"
 
 export type ProjectStatus = "pending" | "active" | "finished"
 export type UserRole = "architect" | "engineer" | "developer"
+const initialsBackgroundColors = ["#FBA834", "#387ADF", "#8447ff", "#8cffda", "#50C4ED", "#FAA300", "#F4538A", "#F5DD61", "#c2a3f4", "#59D5E0"]
+
 
 export interface IProject {
     name: string
@@ -23,6 +25,9 @@ export class Project implements IProject {
     cost: number = Math.floor(Math.random() * Math.pow(10, 7)) // Remove
     progress: number = 0
     id: string
+    initialsBackgroundColor: string = initialsBackgroundColors[Math.floor(Math.random() * 11)]
+    // todos: { [{ todo: "make coffe", todoDate: "30.05.2024" }, { todo: "print drawing", todoDate: "30.05.2024" }]}
+
 
     costCurrencyCH(amount: number) {
         return new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(
@@ -52,6 +57,8 @@ export class Project implements IProject {
         this.setUI()
     }
 
+    // get random colors
+
     // Create the project card UI
     setUI() {
 
@@ -61,7 +68,7 @@ export class Project implements IProject {
         this.ui.className = "project-card"
         this.ui.innerHTML = `                    
         <div class="card-header">
-            <p class="card-initial">HC</p>
+            <p class="card-initial" style="background-color: ${this.initialsBackgroundColor}">${this.name.slice(0, 2)}</p>
             <div>
                 <h5>${this.name}</h5>
                 <p>${this.description}</p>

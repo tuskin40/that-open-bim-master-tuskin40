@@ -18,6 +18,11 @@ export class ProjectsManager {
         if (nameInUse) {
             throw new Error(`A project with the name "${data.name}" already exists`)
         }
+
+        if (data.name.length < 5) {
+            throw new Error(`Project name "${data.name}" too short, it should be more than 5 characters long`);       
+        }
+
         const project = new Project(data)
 
         project.ui.addEventListener('click', () => {
@@ -40,18 +45,28 @@ export class ProjectsManager {
     private setDetailsPage(project: Project) {
         const detailsPage = document.getElementById("project-details")
         if (!detailsPage) { return }
+
+        const initials = detailsPage.querySelector("[data-project-info='initials']") as HTMLElement
+        if (initials) { 
+            initials.textContent = project.name.slice(0, 2) 
+            initials.style.backgroundColor = project.initialsBackgroundColor
+        }
+
         const name = detailsPage.querySelector("[data-project-info='name']")
         if (name) { name.textContent = project.name }
+
         const description = detailsPage.querySelector("[data-project-info='description']")
         if (description) { description.textContent = project.description }
 
         const cardName = detailsPage.querySelector("[data-project-info='card-name']")
         if (cardName) { cardName.textContent = project.name }
+
         const cardDescription = detailsPage.querySelector("[data-project-info='card-description']")
         if (cardDescription) { cardDescription.textContent = project.description }
 
         const status = detailsPage.querySelector("[data-project-info='status']")
         if (status) { status.textContent = project.status }
+
         const cost = detailsPage.querySelector("[data-project-info='cost']")
         if (cost) {
             cost.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
@@ -60,6 +75,7 @@ export class ProjectsManager {
 
         const userRole = detailsPage.querySelector("[data-project-info='userRole']")
         if (userRole) { userRole.textContent = project.userRole }
+
         const finishDate = detailsPage.querySelector("[data-project-info='finishDate']")
         if (finishDate) { finishDate.textContent = new Date(project.finishDate).toLocaleDateString() }
     }

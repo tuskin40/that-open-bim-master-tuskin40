@@ -29,8 +29,10 @@
                 <header>
                     <h2>Projects</h2>
                     <div style="display: flex; align-items: center;column-gap: 16px;">
-                        <span id="import-project-btn" class="material-symbols-outlined" style="cursor: pointer;">file_upload</span>
-                        <span id="export-project-btn" class="material-symbols-outlined" style="cursor: pointer;">file_download</span>
+                        <span id="import-project-btn" class="material-symbols-outlined"
+                            style="cursor: pointer;">file_upload</span>
+                        <span id="export-project-btn" class="material-symbols-outlined"
+                            style="cursor: pointer;">file_download</span>
                         <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New
                             Project</button>
                     </div>
@@ -75,8 +77,8 @@
                     <div class="input-list">
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                            <input name="name" type="text" placeholder="what is your project's name">
-                            <span class="input-tip">TIP: Give it a short name</span>
+                            <input id="new-project-name-input" data-project-info="projectName" name="name" type="text" placeholder="what is your project's name">
+                            <span class="input-tip">TIP: Give it a short name minimum 5 characters</span>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">description</span>Description</label>
@@ -101,7 +103,7 @@
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input name="finishDate" type="date">
+                            <input data-project-info="finishDate" name="finishDate" type="date" >
                         </div>
 
                     </div>
@@ -116,24 +118,24 @@
             <!-- ERROR MODAL ALERT -->
             <dialog id="error-modal">
                 <div>
-                <img src="./assets/error.svg" alt="error symbol"
-                    style="width: 64px; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
+                    <img src="./assets/error.svg" alt="error symbol"
+                        style="width: 64px; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
 
-                <h2>Oops...</h2>
-                <h5 id="error-message"></h5>
-                <div class="form-buttons-container">
-                    <button id="error-modal-button" class="btn-secondary-accept">Close</button>
+                    <h2>Oops...</h2>
+                    <h5 id="error-message"></h5>
+                    <div class="form-buttons-container">
+                        <button id="error-modal-button" class="btn-secondary-accept">Close</button>
+                    </div>
                 </div>
-            </div>
             </dialog>
 
-            
+
             <!-- PROJECT DETAILS -->
             <div id="project-details" class="page" style="display: none;">
                 <header>
                     <div>
                         <h3 data-project-info="name">Project name</h3>
-                        <p style="color: var(--primary-grey);"  data-project-info="description">Project description</p>
+                        <p style="color: var(--primary-grey);" data-project-info="description">Project description</p>
                     </div>
                 </header>
                 <div class="main-page-content">
@@ -141,12 +143,13 @@
                         <div class="dashboard-card"
                             style="padding: 16px; display: flex;flex-direction: column; row-gap: 16px;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p class="card-initial">HC</p>
-                                <button class="btn-secondary">Edit</button>
+                                <p class="card-initial" data-project-info="initials">HC</p>
+                                <button id="project-edit-btn" class="btn-secondary">Edit</button>
                             </div>
                             <div>
                                 <h5 data-project-info="card-name">Project name</h5>
-                                <p style="color: var(--primary-grey);"  data-project-info="card-description">Project description</p>
+                                <p style="color: var(--primary-grey);" data-project-info="card-description">Project
+                                    description</p>
                             </div>
                             <div style="display: flex; column-gap: 8px;justify-content: space-between;">
                                 <div>
@@ -179,7 +182,7 @@
                                     style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
                                     <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                     <input type="text" placeholder="Search To-Do by name" style="width: 100%;">
-                                    <span class="material-symbols-outlined" style="cursor: pointer;">add</span>
+                                    <span id="add-todo-btn" class="material-symbols-outlined" style="cursor: pointer;">add</span>
                                 </div>
                             </div>
                             <div style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
