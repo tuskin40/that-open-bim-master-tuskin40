@@ -1,3 +1,4 @@
+import { StringLiteralLike } from "typescript"
 import { IProject, ProjectStatus, UserRole } from "./classes/Project"
 import { ProjectsManager } from "./classes/ProjectsManager"
 
@@ -6,7 +7,7 @@ import { ProjectsManager } from "./classes/ProjectsManager"
 //     modal.showModal()
 // }
 
-//---- GENERAL FUNCTIONS 
+//#region GENERAL FUNCTIONS 
 
 // functions for modal form display
 function showModal(id: string) {
@@ -42,8 +43,8 @@ function toggleModal(id: string) {
 
 function checkInputLength(id: string) {
     const inputElement = document.getElementById(id) as HTMLInputElement;
-    if (!inputElement){return}
-    
+    if (!inputElement) { return }
+
     const inputValue = inputElement.value;
 
     if (inputValue.length < 5) {
@@ -52,6 +53,7 @@ function checkInputLength(id: string) {
         inputElement.classList.remove('error');
     }
 }
+//#endregion
 
 const newProjectInput = document.getElementById("new-project-name-input")
 if (newProjectInput) {
@@ -63,7 +65,8 @@ if (newProjectInput) {
     })
 }
 
-//---- BUTTON FUNCTIONS 
+
+//#region BUTTON FUNCTIONS 
 
 
 // Navigation Project button code
@@ -79,33 +82,33 @@ if (allProjectBtn) {
 
     })
 } else {
-    console.warn("New project button was not found")
+    console.warn("projects-btn was not found")
 }
 
 // New Project button code
 const newProjectBtn = document.getElementById("new-project-btn")
 if (newProjectBtn) {
-    newProjectBtn.addEventListener("click", () => { 
+    newProjectBtn.addEventListener("click", () => {
         const newProjectForm = document.getElementById("new-project-form")
         const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
         finishDateInput.value = new Date().toISOString().split('T')[0];
-        toggleModal("new-project-modal") 
+        toggleModal("new-project-modal")
     })
 } else {
-    console.warn("New project button was not found")
+    console.warn("new-project-btn was not found")
 }
 
 // Project Edit button
 const editProjectBtn = document.getElementById("project-edit-btn")
 if (editProjectBtn) {
     editProjectBtn.addEventListener("click", () => {
-        // const newProjectForm = document.getElementById("new-project-form")
+        const newProjectForm = document.getElementById("edit-project-form")
         // const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
         // finishDateInput.value = new Date().toISOString().split('T')[0];
-        // toggleModal("new-project-modal")
+        toggleModal("edit-project-modal")
     })
 } else {
-    console.warn("New project button was not found")
+    console.warn("project-edit-btn was not found")
 }
 
 
@@ -119,7 +122,7 @@ if (addProjectTodoBtn) {
         // toggleModal("new-project-modal")
     })
 } else {
-    console.warn("New project button was not found")
+    console.warn("add-todo-btn was not found")
 }
 
 
@@ -141,9 +144,17 @@ if (importProjectBtn) {
 }
 
 // Cancel New project button
-const cancelFormBtn = document.getElementById("cancel-new-project-button")
+const cancelFormBtn = document.getElementById("cancel-new-project-button") as HTMLElement
 if (cancelFormBtn) {
     cancelFormBtn.addEventListener("click", () => { toggleModal("new-project-modal") })
+} else {
+    console.warn("New cancel-new-project-button was not found")
+}
+
+// Cancel Edit project button
+const cancelEditFormBtn = document.getElementById("cancel-edit-project-button") as HTMLElement
+if (cancelEditFormBtn) {
+    cancelEditFormBtn.addEventListener("click", () => { toggleModal("edit-project-modal") })
 } else {
     console.warn("New cancel-new-project-button was not found")
 }
@@ -156,13 +167,17 @@ if (errorModalBtn) {
     console.warn("New error-modal-button was not found")
 }
 
+//#endregion
+
+//#region MAIN CODE
+
 // Project Manager code
 const projectListUI = document.getElementById("projects-list") as HTMLElement
 const projectsManager = new ProjectsManager(projectListUI)
 
 // Error message code
 
-// Read form data and create project card code
+//#region ADD NEW PROJECT
 const projectForm = document.getElementById("new-project-form")
 
 if (projectForm && projectForm instanceof HTMLFormElement) {
@@ -199,6 +214,47 @@ if (projectForm && projectForm instanceof HTMLFormElement) {
 } else {
     console.warn("The project from was not found. check the ID!")
 }
+//#endregion
+
+
+//#region UPDATE EXISTING PROJECT
+const projectEditForm = document.getElementById("edit-project-form")
+
+if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
+    projectEditForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const formData = new FormData(projectEditForm)
+        const projectObj = {
+            "name": formData.get("name") as string,
+            "description": formData.get("description") as string,
+            "userRole": formData.get("userRole") as UserRole,
+            "status": formData.get("status") as ProjectStatus,
+            "finishDate": new Date(formData.get("finishDate") as string),
+            "cost" : parseFloat(formData.get("cost") as string),
+            "progress" : parseFloat(formData.get("progress") as string)
+        }
+
+
+        try {
+            const myProject = projectsManager.updateProject(projectObj)
+            toggleModal("edit-project-modal")
+
+        } catch (err) {
+            // alert(err)
+            console.error(err)
+            // projectEditForm.reset()
+            // toggleModal("new-project-modal")
+            const errorMsg = document.getElementById("error-message") as HTMLElement
+            errorMsg.innerHTML = err
+            showModal("error-modal")
+        }
+
+    })
+
+} else {
+    console.warn("The project from was not found. check the ID!")
+}
+//#endregion
 
 // load data when document is loaded
 // document.addEventListener('DOMContentLoaded', () => {
@@ -206,4 +262,6 @@ if (projectForm && projectForm instanceof HTMLFormElement) {
 //         projectsManager.importFromJSON()
 //     },5000)
 // })
-// window.onload = () => { projectsManager.importFromJSON() } 
+// window.onload = () => { projectsManager.importFromJSON() }
+
+//#endregion 

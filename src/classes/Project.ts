@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
+import { Todo } from "./Todo"
 
 export type ProjectStatus = "pending" | "active" | "finished"
 export type UserRole = "architect" | "engineer" | "developer"
@@ -26,7 +27,7 @@ export class Project implements IProject {
     progress: number = 0
     id: string
     initialsBackgroundColor: string = initialsBackgroundColors[Math.floor(Math.random() * 11)]
-    // todos: { [{ todo: "make coffe", todoDate: "30.05.2024" }, { todo: "print drawing", todoDate: "30.05.2024" }]}
+    todos: Todo[] = []
 
 
     costCurrencyCH(amount: number) {
@@ -57,7 +58,22 @@ export class Project implements IProject {
         this.setUI()
     }
 
-    // get random colors
+    update(data: IProject) {
+        // project data definition
+        for (const key in data) {
+            if (key != 'ui') {
+                this[key] = data[key]
+                // console.log(data[key])
+            }
+        }
+        // this.name           = data.name
+        // this.description    = data.description
+        // this.status         = data.status
+        // this.userRole       = data.userRole
+        // this.finishDate     = data.finishDate
+        if (!this.id) { this.id = uuidv4() }
+        this.updateUI()
+    }
 
     // Create the project card UI
     setUI() {
@@ -89,7 +105,41 @@ export class Project implements IProject {
             </div>
             <div class="card-property">
                 <p>Estimated Progress</p>
-                <p>${this.progress * 100}%</p>
+                <p>${this.progress}%</p>
+            </div>
+        </div>`
+    }
+
+    // Create the project card UI
+    updateUI() {
+
+        // if (this.ui) { return } // prevents from code running again after the ui has already been created
+
+
+        this.ui.innerHTML = `                    
+        <div class="card-header">
+            <p class="card-initial" style="background-color: ${this.initialsBackgroundColor}">${this.name.slice(0, 2)}</p>
+            <div>
+                <h5>${this.name}</h5>
+                <p>${this.description}</p>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-property">
+                <p>Status</p>
+                <p>${this.status}</p>
+            </div>
+            <div class="card-property">
+                <p>Role</p>
+                <p>${this.userRole}</p>
+            </div>
+            <div class="card-property">
+                <p>Cost</p>
+                <p>${this.costCurrencyUS(this.cost)}</p>
+            </div>
+            <div class="card-property">
+                <p>Estimated Progress</p>
+                <p>${this.progress}%</p>
             </div>
         </div>`
     }
