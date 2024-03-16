@@ -21,7 +21,7 @@
         </aside>
         <main id="content">
 
-            <!-- PROJECT LIST -->
+            <!-- #region PROJECT LIST -->
             <div id="projects-page" class="page">
                 <!-- <div id=" projects-page" class="page"> -->
 
@@ -29,8 +29,10 @@
                 <header>
                     <h2>Projects</h2>
                     <div style="display: flex; align-items: center;column-gap: 16px;">
-                        <span id="import-project-btn" class="material-symbols-outlined" style="cursor: pointer;">file_upload</span>
-                        <span id="export-project-btn" class="material-symbols-outlined" style="cursor: pointer;">file_download</span>
+                        <span id="import-project-btn" class="material-symbols-outlined"
+                            style="cursor: pointer;">file_upload</span>
+                        <span id="export-project-btn" class="material-symbols-outlined"
+                            style="cursor: pointer;">file_download</span>
                         <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New
                             Project</button>
                     </div>
@@ -67,25 +69,26 @@
                     </div>
                 </div>
             </div>
+            <!-- #endregion -->
 
-            <!-- PROJECT DETAILS MODAL FORM -->
+            <!-- #region NEW PROJECT MODAL FORM -->
             <dialog id="new-project-modal">
                 <form action="" id="new-project-form">
                     <h2>New Project</h2>
                     <div class="input-list">
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                            <input name="name" type="text" placeholder="what is your project's name">
-                            <span class="input-tip">TIP: Give it a short name</span>
+                            <input id="new-project-name-input" data-project-info="projectName" name="name" type="text" placeholder="what is your project's name">
+                            <span class="input-tip">TIP: Give it a short name minimum 5 characters</span>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">description</span>Description</label>
                             <textarea name="description" cols="30" rows="5"
-                                placeholder="Short description of the project"></textarea>
+                                placeholder="Short description of the project" data-project-info="description"></textarea>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                            <select name="userRole">
+                            <select name="userRole" data-project-info="userRole">
                                 <option>Architect</option>
                                 <option>Engineer</option>
                                 <option>Developer</option>
@@ -93,7 +96,7 @@
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
-                            <select name="status">
+                            <select name="status" data-project-info="status">
                                 <option>Pending</option>
                                 <option>Active</option>
                                 <option>Finished</option>
@@ -101,7 +104,7 @@
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input name="finishDate" type="date">
+                            <input data-project-info="finishDate" name="finishDate" type="date" >
                         </div>
 
                     </div>
@@ -112,28 +115,85 @@
                     </div>
                 </form>
             </dialog>
+            <!-- #endregion -->
 
-            <!-- ERROR MODAL ALERT -->
+            <!-- #region EDIT PROJECT MODAL FORM -->
+            <dialog id="edit-project-modal">
+                <form action="" id="edit-project-form">
+                    <h2>Edit Project</h2>
+                    <div class="input-list">
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">apartment</span>Name</label>
+                            <input id="edit-project-name-input" data-project-info="projectName" name="name" type="text" placeholder="what is your project's name">
+                            <span class="input-tip">TIP: Give it a short name minimum 5 characters</span>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">description</span>Description</label>
+                            <textarea name="description" cols="30" rows="5"
+                                placeholder="Short description of the project" data-project-info="description"></textarea>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">money</span>Cost</label>
+                            <input id="edit-project-name-input" data-project-info="cost" name="cost" type="text" placeholder="cost of the project">
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">account_circle</span>Role</label>
+                            <select name="userRole" data-project-info="userRole">
+                                <option>Architect</option>
+                                <option>Engineer</option>
+                                <option>Developer</option>
+                            </select>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
+                            <select name="status" data-project-info="status">
+                                <option>Pending</option>
+                                <option>Active</option>
+                                <option>Finished</option>
+                            </select>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">money</span>Progress</label>
+                            <input id="edit-project-progress-input" data-project-info="progress" name="progress" type="text"
+                                placeholder="project progress">
+                        </div>
+
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
+                            <input data-project-info="finishDate" name="finishDate" type="date" >
+                        </div>
+
+                    </div>
+                    <div class="form-buttons-container">
+                        <button id="cancel-edit-project-button" type="button"
+                            class="btn-secondary-cancel">Cancel</button>
+                        <button type="submit" class="btn-secondary-accept">Accept</button>
+                    </div>
+                </form>
+            </dialog>
+            <!-- #endregion -->
+
+            <!-- #region ERROR MODAL ALERT -->
             <dialog id="error-modal">
                 <div>
-                <img src="./assets/error.svg" alt="error symbol"
-                    style="width: 64px; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
+                    <img src="./assets/error.svg" alt="error symbol"
+                        style="width: 64px; filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);">
 
-                <h2>Oops...</h2>
-                <h5 id="error-message"></h5>
-                <div class="form-buttons-container">
-                    <button id="error-modal-button" class="btn-secondary-accept">Close</button>
+                    <h2>Oops...</h2>
+                    <h5 id="error-message"></h5>
+                    <div class="form-buttons-container">
+                        <button id="error-modal-button" class="btn-secondary-accept">Close</button>
+                    </div>
                 </div>
-            </div>
             </dialog>
+            <!-- #endregion -->
 
-            
-            <!-- PROJECT DETAILS -->
+            <!-- #region PROJECT DETAILS -->
             <div id="project-details" class="page" style="display: none;">
                 <header>
                     <div>
                         <h3 data-project-info="name">Project name</h3>
-                        <p style="color: var(--primary-grey);"  data-project-info="description">Project description</p>
+                        <p style="color: var(--primary-grey);" data-project-info="description">Project description</p>
                     </div>
                 </header>
                 <div class="main-page-content">
@@ -141,18 +201,15 @@
                         <div class="dashboard-card"
                             style="padding: 16px; display: flex;flex-direction: column; row-gap: 16px;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <p class="card-initial">HC</p>
-                                <button class="btn-secondary">Edit</button>
+                                <p class="card-initial" data-project-info="initials">HC</p>
+                                <button id="project-edit-btn" class="btn-secondary">Edit</button>
                             </div>
                             <div>
                                 <h5 data-project-info="card-name">Project name</h5>
-                                <p style="color: var(--primary-grey);"  data-project-info="card-description">Project description</p>
+                                <p style="color: var(--primary-grey);" data-project-info="card-description">Project
+                                    description</p>
                             </div>
                             <div style="display: flex; column-gap: 8px;justify-content: space-between;">
-                                <div>
-                                    <p style="color: var(--primary-grey); font-size: var(--text-sm);">Status</p>
-                                    <p data-project-info="status">Active</p>
-                                </div>
                                 <div>
                                     <p style="color: var(--primary-grey);font-size: var(--text-sm);">Cost</p>
                                     <p data-project-info="cost">$ 2'345'678</p>
@@ -162,12 +219,16 @@
                                     <p data-project-info="userRole">Engineer</p>
                                 </div>
                                 <div>
+                                    <p style="color: var(--primary-grey); font-size: var(--text-sm);">Status</p>
+                                    <p data-project-info="status">Active</p>
+                                </div>
+                                <div>
                                     <p style="color: var(--primary-grey); font-size: var(--text-sm);">Finish Date</p>
                                     <p data-project-info="finishDate">2023-05-01</p>
                                 </div>
                             </div>
                             <div style="background-color: #404040; border-radius: 9999px; overflow: auto;">
-                                <div style="width: 80%; background-color: green; padding: 4px 0; text-align: center;">
+                                <div style="width: 80%; background-color: green; padding: 4px 0; text-align: center;" data-project-info="progress">
                                     80%</div>
                             </div>
                         </div>
@@ -179,7 +240,7 @@
                                     style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
                                     <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                     <input type="text" placeholder="Search To-Do by name" style="width: 100%;">
-                                    <span class="material-symbols-outlined" style="cursor: pointer;">add</span>
+                                    <span id="add-todo-btn" class="material-symbols-outlined" style="cursor: pointer;">add</span>
                                 </div>
                             </div>
                             <div style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
@@ -199,8 +260,9 @@
                     <div id="viewer-container" class="dashboard-card">viewer</div>
                 </div>
             </div>
+            <!-- #endregion -->
 
-            <!-- USERS LIST - CARD TYPE -->
+            <!-- #region USERS LIST - CARD TYPE -->
             <div id="users-page" class="page" style="display: none;">
                 <header>
                     <div>
@@ -283,8 +345,9 @@
                     </div>
                 </div>
             </div>
+<!-- #endregion -->
 
-            <!-- USERS LIST - LIST TYPE -->
+            <!-- #region USERS LIST - LIST TYPE -->
             <div id="users-page" class="page" style="display: none;">
                 <header>
                     <div>
@@ -369,8 +432,9 @@
                     </ul>
                 </div>
             </div>
+<!-- #endregion -->
 
-            <!-- USER DETAILS MODAL FORM -->
+            <!-- #region USER DETAILS MODAL FORM -->
             <dialog id="new-user-modal">
                 <form action="">
                     <h2>New Use</h2>
@@ -408,8 +472,7 @@
                     </div>
                 </form>
             </dialog>
-
-
+            <!-- #endregion -->
 
 
         </main>
