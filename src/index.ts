@@ -1,6 +1,8 @@
 import { StringLiteralLike } from "typescript"
 import { IProject, ProjectStatus, UserRole } from "./classes/Project"
 import { ProjectsManager } from "./classes/ProjectsManager"
+import { projectsListSample } from "./classes//ProjectsListSample"
+import { ITodo, Todo, TodoStatus } from "./classes/Todo"
 
 // const showModal = () => {
 //     const modal = document.getElementById("new-project-modal")
@@ -66,7 +68,7 @@ if (newProjectInput) {
 }
 
 
-//#region BUTTON FUNCTIONS 
+//#region BUTTON FUNCTIONS EVENT LISTENERS
 
 
 // Navigation Project button code
@@ -116,10 +118,12 @@ if (editProjectBtn) {
 const addProjectTodoBtn = document.getElementById("add-todo-btn")
 if (addProjectTodoBtn) {
     addProjectTodoBtn.addEventListener("click", () => {
-        // const newProjectForm = document.getElementById("new-project-form")
-        // const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
-        // finishDateInput.value = new Date().toISOString().split('T')[0];
-        // toggleModal("new-project-modal")
+        const newProjectTodoForm = document.getElementById("new-todo-form")
+        const taskDescriptionInput = newProjectTodoForm?.querySelector('[data-project-info="taskDescription"]') as HTMLInputElement
+        taskDescriptionInput.value = ""
+        const taskDateInput = newProjectTodoForm?.querySelector('[data-project-info="taskDate"]') as HTMLInputElement
+        taskDateInput.value = new Date().toISOString().split('T')[0];
+        toggleModal("new-todo-modal")
     })
 } else {
     console.warn("add-todo-btn was not found")
@@ -138,26 +142,15 @@ if (exportProjectBtn) {
 // Import button code
 const importProjectBtn = document.getElementById("import-project-btn")
 if (importProjectBtn) {
-    importProjectBtn.addEventListener("click", () => { projectsManager.importFromJSON() })
+    importProjectBtn.addEventListener("click", () => { 
+        projectsManager.importFromJSON() 
+        // projectsManager.ui_update_list()
+    })
+
 } else {
     console.warn("import-project-btn button was not found")
 }
 
-// Cancel New project button
-const cancelFormBtn = document.getElementById("cancel-new-project-button") as HTMLElement
-if (cancelFormBtn) {
-    cancelFormBtn.addEventListener("click", () => { toggleModal("new-project-modal") })
-} else {
-    console.warn("New cancel-new-project-button was not found")
-}
-
-// Cancel Edit project button
-const cancelEditFormBtn = document.getElementById("cancel-edit-project-button") as HTMLElement
-if (cancelEditFormBtn) {
-    cancelEditFormBtn.addEventListener("click", () => { toggleModal("edit-project-modal") })
-} else {
-    console.warn("New cancel-new-project-button was not found")
-}
 
 // Error modal button
 const errorModalBtn = document.getElementById("error-modal-button")
@@ -169,7 +162,6 @@ if (errorModalBtn) {
 
 //#endregion
 
-//#region MAIN CODE
 
 // Project Manager code
 const projectListUI = document.getElementById("projects-list") as HTMLElement
@@ -177,7 +169,22 @@ const projectsManager = new ProjectsManager(projectListUI)
 
 // Error message code
 
-//#region ADD NEW PROJECT
+//#region FORM INPUTS
+
+
+
+
+//#region ADD NEW PROJECT FORM 
+
+// Cancel New project button
+const cancelFormBtn = document.getElementById("cancel-new-project-button") as HTMLElement
+if (cancelFormBtn) {
+    cancelFormBtn.addEventListener("click", () => { toggleModal("new-project-modal") })
+} else {
+    console.warn("New cancel-new-project-button was not found")
+}
+
+
 const projectForm = document.getElementById("new-project-form")
 
 if (projectForm && projectForm instanceof HTMLFormElement) {
@@ -196,9 +203,7 @@ if (projectForm && projectForm instanceof HTMLFormElement) {
             const myProject = projectsManager.newProject(projectObj)
             projectForm.reset()
             toggleModal("new-project-modal")
-            console.log("Project cost:", new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-                projectsManager.totalProjectsCost(),
-            ))
+
         } catch (err) {
             // alert(err)
             console.error(err)
@@ -217,7 +222,22 @@ if (projectForm && projectForm instanceof HTMLFormElement) {
 //#endregion
 
 
-//#region UPDATE EXISTING PROJECT
+
+
+
+
+//#region UPDATE EXISTING PROJECT FORM 
+
+
+// Cancel Edit project button
+const cancelEditFormBtn = document.getElementById("cancel-edit-project-button") as HTMLElement
+if (cancelEditFormBtn) {
+    cancelEditFormBtn.addEventListener("click", () => { toggleModal("edit-project-modal") })
+} else {
+    console.warn("New cancel-new-project-button was not found")
+}
+
+
 const projectEditForm = document.getElementById("edit-project-form")
 
 if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
@@ -256,12 +276,116 @@ if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
 }
 //#endregion
 
+
+
+
+
+//#region ADD NEW USER FORM 
+
+
+// Cancel Todo  button
+const cancelUserFormBtn = document.getElementById("cancel-new-user-button") as HTMLElement
+if (cancelUserFormBtn) {
+    cancelUserFormBtn.addEventListener("click", () => { toggleModal("new-user-modal") })
+} else {
+    console.warn("New cancel-new-user-button was not found")
+}
+
+
+
+const userForm = document.getElementById("new-user-form")
+
+if (userForm && userForm instanceof HTMLFormElement) {
+    userForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const formData = new FormData(userForm)
+        const projectObj: IProject = {
+            "name": formData.get("name") as string,
+            "description": formData.get("description") as string,
+            "userRole": formData.get("userRole") as UserRole,
+            "status": formData.get("status") as ProjectStatus,
+            "finishDate": new Date(formData.get("finishDate") as string),
+        }
+
+        try {
+            const myProject = projectsManager.newProject(projectObj)
+            userForm.reset()
+            toggleModal("new-user-modal")
+
+        } catch (err) {
+            // alert(err)
+            console.error(err)
+            // userForm.reset()
+            // toggleModal("new-project-modal")
+            const errorMsg = document.getElementById("error-message") as HTMLElement
+            errorMsg.innerHTML = err
+            showModal("error-modal")
+        }
+
+    })
+
+} else {
+    console.warn("The project from was not found. check the ID!")
+}
+//#endregion
+
+
+
+
+
+
+//#region ADD NEW TODO FORM 
+
+
+
+// Cancel Todo  button
+const cancelTodoFormBtn = document.getElementById("cancel-new-todo-button") as HTMLElement
+if (cancelTodoFormBtn) {
+    cancelTodoFormBtn.addEventListener("click", () => { toggleModal("new-todo-modal") })
+} else {
+    console.warn("New cancel-new-todo-button was not found")
+}
+
+
+
+const todoForm = document.getElementById("new-todo-form")
+
+if (todoForm && todoForm instanceof HTMLFormElement) {
+    todoForm.addEventListener("submit", (e) => {
+        e.preventDefault()
+        const formData = new FormData(todoForm)
+        const todoObj: ITodo = {
+            "dateAdded" : new Date(),
+            "description" : formData.get("taskDescription") as string,
+            "status": formData.get("taskStatus") as TodoStatus,
+            "dueDate" : new Date(formData.get("taskDate") as string )
+        }
+        try {
+            projectsManager.addTodo(todoObj)
+            toggleModal("new-todo-modal")
+
+        } catch (err) {
+            console.error(err)
+            const errorMsg = document.getElementById("error-message") as HTMLElement
+            errorMsg.innerHTML = err
+            showModal("error-modal")
+        }
+
+    })
+
+} else {
+    console.warn("The project from was not found. check the ID!")
+}
+
+
+//#endregion
+
+
 // load data when document is loaded
 // document.addEventListener('DOMContentLoaded', () => {
 //     setTimeout(() => {
-//         projectsManager.importFromJSON()
+//         projectsManager.loadDefaultData()
 //     },5000)
 // })
-// window.onload = () => { projectsManager.importFromJSON() }
+// window.onload = () => { projectsManager.loadDefaultData(projectsListSample)}
 
-//#endregion 

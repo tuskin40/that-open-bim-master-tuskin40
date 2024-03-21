@@ -1,0 +1,32 @@
+[
+  {
+    "cost": 7589644,
+    "progress": 0,
+    "initialsBackgroundColor": "#FAA300",
+    "todos": [
+      {
+        "dateAdded": "2024-03-19T21:58:29.617Z",
+        "description": "gfdgdfggf",
+        "done": false,
+        "id": "ac20a942-2821-414f-93bb-55d320360021",
+        "ui": {},
+        "dueDate": "2024-03-24T00:00:00.000Z"
+      },
+      {
+        "dateAdded": "2024-03-19T21:58:41.003Z",
+        "description": "fdgfdcvbcvb",
+        "done": false,
+        "id": "4947b34a-1ab2-435a-9121-92fff2dde819",
+        "ui": {},
+        "dueDate": "2024-03-31T00:00:00.000Z"
+      }
+    ],
+    "name": "fgdfg345435435",
+    "description": "regtertfdgfdg",
+    "userRole": "Architect",
+    "status": "Pending",
+    "finishDate": "2024-03-19T00:00:00.000Z",
+    "id": "ef5b3012-89d8-4de5-8585-3412543e94a3",
+    "ui": {}
+  }
+]

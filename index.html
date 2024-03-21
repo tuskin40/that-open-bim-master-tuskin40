@@ -134,7 +134,7 @@
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">money</span>Cost</label>
-                            <input id="edit-project-name-input" data-project-info="cost" name="cost" type="text" placeholder="cost of the project">
+                            <input id="edit-project-cost-input" data-project-info="cost" name="cost" type="text" placeholder="cost of the project">
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
@@ -188,7 +188,7 @@
             </dialog>
             <!-- #endregion -->
 
-            <!-- #region PROJECT DETAILS -->
+            <!-- #region PROJECT DETAILS CONTAINER-->
             <div id="project-details" class="page" style="display: none;">
                 <header>
                     <div>
@@ -243,7 +243,7 @@
                                     <span id="add-todo-btn" class="material-symbols-outlined" style="cursor: pointer;">add</span>
                                 </div>
                             </div>
-                            <div style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
+                            <div id="project-todos-container" style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
                                 <div class="todo-item">
                                     <div style="display: flex;justify-content: space-between;align-items: center;">
                                         <div style="display: flex; align-items: center;">
@@ -436,7 +436,7 @@
 
             <!-- #region USER DETAILS MODAL FORM -->
             <dialog id="new-user-modal">
-                <form action="">
+                <form action="" id="new-user-form">
                     <h2>New Use</h2>
                     <div class="input-list">
                         <div class="form-field-container">
@@ -467,8 +467,39 @@
                         </div> -->
                     </div>
                     <div class="form-buttons-container">
-                        <button class="btn-secondary-cancel">Cancel</button>
-                        <button class="btn-secondary-accept">Accept</button>
+                        <button id="cancel-new-user-button" class="btn-secondary-cancel" type="button">Cancel</button>
+                        <button type="submit"  class="btn-secondary-accept">Accept</button>
+                    </div>
+                </form>
+            </dialog>
+            <!-- #endregion -->
+
+            <!-- #region TO DO DETAILS MODAL FORM -->
+            <dialog id="new-todo-modal">
+                <form action="" id="new-todo-form">
+                    <h2>New Todo</h2>
+                    <div class="input-list">
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">person</span>Task</label>
+                            <input type="text" id="new-task-description" data-project-info="taskDescription" name="taskDescription">
+                            <span class="input-tip">TIP: Give it a short description of task</span>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
+                            <select name="status" data-project-info="taskStatus">
+                                <option>Pending</option>
+                                <option>Active</option>
+                                <option>Finished</option>
+                            </select>
+                        </div>
+                        <div class="form-field-container">
+                            <label><span class="material-symbols-outlined">calendar_month</span>Task Date</label>
+                            <input data-project-info="taskDate" name="taskDate" type="date">
+                        </div>
+                    </div>
+                    <div class="form-buttons-container">
+                        <button id="cancel-new-todo-button" class="btn-secondary-cancel" type="button">Cancel</button>
+                        <button type="submit" class="btn-secondary-accept">Accept</button>
                     </div>
                 </form>
             </dialog>

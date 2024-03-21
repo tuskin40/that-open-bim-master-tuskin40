@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid"
-import { Todo } from "./Todo"
+import { ITodo, Todo } from "./Todo"
 
 export type ProjectStatus = "pending" | "active" | "finished"
 export type UserRole = "architect" | "engineer" | "developer"
@@ -30,30 +30,19 @@ export class Project implements IProject {
     todos: Todo[] = []
 
 
-    costCurrencyCH(amount: number) {
-        return new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(
-            amount,
-        )
-    }
-    costCurrencyUS(amount: number) {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-            amount,
-        )
-    }
-
     constructor(data: IProject) {
         // project data definition
         for (const key in data) {
-            if (key != 'ui') {
+            if (key === 'todos') {
+                for (const todoKey in this.todos) {
+                    console.log(todoKey)
+                }
+            } else if (key != 'ui') {
                 this[key] = data[key]
                 // console.log(data[key])
             }
         }
-        // this.name           = data.name
-        // this.description    = data.description
-        // this.status         = data.status
-        // this.userRole       = data.userRole
-        // this.finishDate     = data.finishDate
+
         if (!this.id) { this.id = uuidv4() }
         this.setUI()
     }
@@ -74,6 +63,27 @@ export class Project implements IProject {
         if (!this.id) { this.id = uuidv4() }
         this.updateUI()
     }
+
+    addTodo(todoData: ITodo) {
+        const new_todo = new Todo(todoData)
+        console.log(new_todo)
+        this.todos.push(new_todo)
+        return new_todo
+    }
+
+
+    costCurrencyCH(amount: number) {
+        return new Intl.NumberFormat('de-CH', { style: 'currency', currency: 'CHF' }).format(
+            amount,
+        )
+    }
+    costCurrencyUS(amount: number) {
+        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+            amount,
+        )
+    }
+
+
 
     // Create the project card UI
     setUI() {
@@ -108,6 +118,7 @@ export class Project implements IProject {
                 <p>${this.progress}%</p>
             </div>
         </div>`
+
     }
 
     // Create the project card UI
