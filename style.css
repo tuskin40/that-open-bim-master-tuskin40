@@ -17,9 +17,9 @@
   --color-primary-grey: #969696;
   --color-primary-red: rgb(239 68 68);
   --color-primary-green: rgb(34 197 94);
-  --color-pending: #ffa500;
+  --color-cancelled: #ff0000;
   --color-active: #00ff00;
-  --color-finished: #0000ff;
+  --color-finished: #707070;
   --color-background: #202124;
   --color-background-100: #26282b;
   --color-background-200: #3b3c3f;
@@ -163,7 +163,7 @@ main header button {
 }
 /* #endregion */
 
-/* #region Cards */
+/* #region Project Cards */
 
 .project-card {
   background: var(--color-background-100);
@@ -347,7 +347,8 @@ select:focus {
 }
 
 .todo-item:hover {
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
+  outline: 2px solid var(--color-primary);
 }
 /* #endregion */
 
@@ -458,8 +459,8 @@ select:focus {
 /* #endregion */
 
 /* #region Todo  */
-.pending {
-  background-color: var(--color-pending);
+.cancelled {
+  background-color: var(--color-cancelled);
 }
 
 .active {
@@ -467,7 +468,7 @@ select:focus {
 }
 .finished {
   background-color: var(--color-finished);
+  /* text-decoration: line-through; */
 }
 
 /* #endregion */
-

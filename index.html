@@ -78,13 +78,15 @@
                     <div class="input-list">
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                            <input id="new-project-name-input" data-project-info="projectName" name="name" type="text" placeholder="what is your project's name">
+                            <input id="new-project-name-input" data-project-info="projectName" name="name" type="text"
+                                placeholder="what is your project's name">
                             <span class="input-tip">TIP: Give it a short name minimum 5 characters</span>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">description</span>Description</label>
                             <textarea name="description" cols="30" rows="5"
-                                placeholder="Short description of the project" data-project-info="description"></textarea>
+                                placeholder="Short description of the project"
+                                data-project-info="description"></textarea>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
@@ -104,7 +106,7 @@
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input data-project-info="finishDate" name="finishDate" type="date" >
+                            <input data-project-info="finishDate" name="finishDate" type="date">
                         </div>
 
                     </div>
@@ -124,17 +126,20 @@
                     <div class="input-list">
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">apartment</span>Name</label>
-                            <input id="edit-project-name-input" data-project-info="projectName" name="name" type="text" placeholder="what is your project's name">
+                            <input id="edit-project-name-input" data-project-info="projectName" name="name" type="text"
+                                placeholder="what is your project's name">
                             <span class="input-tip">TIP: Give it a short name minimum 5 characters</span>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">description</span>Description</label>
                             <textarea name="description" cols="30" rows="5"
-                                placeholder="Short description of the project" data-project-info="description"></textarea>
+                                placeholder="Short description of the project"
+                                data-project-info="description"></textarea>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">money</span>Cost</label>
-                            <input id="edit-project-cost-input" data-project-info="cost" name="cost" type="text" placeholder="cost of the project">
+                            <input id="edit-project-cost-input" data-project-info="cost" name="cost" type="text"
+                                placeholder="cost of the project">
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
@@ -154,13 +159,13 @@
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">money</span>Progress</label>
-                            <input id="edit-project-progress-input" data-project-info="progress" name="progress" type="text"
-                                placeholder="project progress">
+                            <input id="edit-project-progress-input" data-project-info="progress" name="progress"
+                                type="text" placeholder="project progress">
                         </div>
 
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input data-project-info="finishDate" name="finishDate" type="date" >
+                            <input data-project-info="finishDate" name="finishDate" type="date">
                         </div>
 
                     </div>
@@ -228,7 +233,8 @@
                                 </div>
                             </div>
                             <div style="background-color: #404040; border-radius: 9999px; overflow: auto;">
-                                <div style="width: 80%; background-color: green; padding: 4px 0; text-align: center;" data-project-info="progress">
+                                <div style="width: 80%; background-color: green; padding: 4px 0; text-align: center;"
+                                    data-project-info="progress">
                                     80%</div>
                             </div>
                         </div>
@@ -240,15 +246,17 @@
                                     style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
                                     <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                     <input type="text" placeholder="Search To-Do by name" style="width: 100%;">
-                                    <span id="add-todo-btn" class="material-symbols-outlined" style="cursor: pointer;">add</span>
+                                    <span id="add-todo-btn" class="material-symbols-outlined"
+                                        style="cursor: pointer;">add</span>
                                 </div>
                             </div>
-                            <div id="project-todos-container" style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
+                            <div id="project-todos-container"
+                                style="display: flex;flex-direction: column;row-gap: 16px;padding: 10px;">
                                 <div class="todo-item">
                                     <div style="display: flex;justify-content: space-between;align-items: center;">
                                         <div style="display: flex; align-items: center;">
                                             <span class="material-symbols-outlined"
-                                                style="padding: 8px; background-color: var(--background-100); border-radius: 8px; margin-right: 8px;">task_alt</span>
+                                                style="padding: 8px; background-color: var(--background-100); border-radius: 8px; margin-right: 8px;">check_box_outline_blank</span>
                                             Task that needs to be done
                                         </div>
                                         <p style="text-wrap: nowrap;margin-left: 8px;">Fri, 20 sep</p>
@@ -345,7 +353,7 @@
                     </div>
                 </div>
             </div>
-<!-- #endregion -->
+            <!-- #endregion -->
 
             <!-- #region USERS LIST - LIST TYPE -->
             <div id="users-page" class="page" style="display: none;">
@@ -432,7 +440,7 @@
                     </ul>
                 </div>
             </div>
-<!-- #endregion -->
+            <!-- #endregion -->
 
             <!-- #region USER DETAILS MODAL FORM -->
             <dialog id="new-user-modal">
@@ -468,7 +476,7 @@
                     </div>
                     <div class="form-buttons-container">
                         <button id="cancel-new-user-button" class="btn-secondary-cancel" type="button">Cancel</button>
-                        <button type="submit"  class="btn-secondary-accept">Accept</button>
+                        <button type="submit" class="btn-secondary-accept">Accept</button>
                     </div>
                 </form>
             </dialog>
@@ -481,15 +489,16 @@
                     <div class="input-list">
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">person</span>Task</label>
-                            <input type="text" id="new-task-description" data-project-info="taskDescription" name="taskDescription">
+                            <input type="text" id="new-task-description" data-project-info="taskDescription"
+                                name="taskDescription">
                             <span class="input-tip">TIP: Give it a short description of task</span>
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
                             <select name="taskStatus" data-project-info="taskStatus">
-                                <option>pending</option>
-                                <option>active</option>
+                                <option selected>active</option>
                                 <option>finished</option>
+                                <option>cancelled</option>
                             </select>
                         </div>
                         <div class="form-field-container">

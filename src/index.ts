@@ -46,8 +46,10 @@ function toggleModal(id: string) {
 export function cycleThroughList(list: string[], currentString: string, direction: 'next' | 'previous'): string {
     const currentIndex = list.indexOf(currentString);
     if (currentIndex === -1) {
-        throw new Error("Current string not found in the list.");
+        throw new Error("Current string not found in the list: '" + currentString + "'\nList: " + list);
     }
+    /// <reference path="" />
+
 
     if (direction === 'next') {
         // Get the index of the next string, looping back to the start if necessary
@@ -172,8 +174,8 @@ if (exportProjectBtn) {
 // Import button code
 const importProjectBtn = document.getElementById("import-project-btn")
 if (importProjectBtn) {
-    importProjectBtn.addEventListener("click", () => { 
-        projectsManager.importFromJSON() 
+    importProjectBtn.addEventListener("click", () => {
+        projectsManager.importFromJSON()
         // projectsManager.ui_update_list()
     })
 
@@ -280,8 +282,8 @@ if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
             "userRole": formData.get("userRole") as UserRole,
             "status": formData.get("status") as ProjectStatus,
             "finishDate": new Date(formData.get("finishDate") as string),
-            "cost" : parseFloat(formData.get("cost") as string),
-            "progress" : parseFloat(formData.get("progress") as string)
+            "cost": parseFloat(formData.get("cost") as string),
+            "progress": parseFloat(formData.get("progress") as string)
         }
 
 
@@ -385,13 +387,12 @@ if (todoForm && todoForm instanceof HTMLFormElement) {
         e.preventDefault()
         const formData = new FormData(todoForm)
         const todoObj: ITodo = {
-            "dateAdded" : new Date(),
-            "description" : formData.get("taskDescription") as string,
+            "dateAdded": new Date(),
+            "description": formData.get("taskDescription") as string,
             "status": formData.get("taskStatus") as TodoStatus,
-            "dueDate" : new Date(formData.get("taskDate") as string )
+            "dueDate": new Date(formData.get("taskDate") as string)
         }
         try {
-            console.info(todoObj)
             projectsManager.addTodo(todoObj)
             toggleModal("new-todo-modal")
 

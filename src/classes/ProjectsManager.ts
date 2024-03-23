@@ -1,7 +1,7 @@
 
 import { isThisTypeNode } from "typescript"
 import { IProject, Project } from "./Project"
-import { ITodo, Todo, TodoStatus } from "./Todo"
+import { ITodo, Todo, TodoStatus, iconsList, todoStatusList } from "./Todo"
 import { cycleThroughList } from "../index";
 
 export class ProjectsManager {
@@ -9,10 +9,12 @@ export class ProjectsManager {
     ui: HTMLElement
     activeProject: Project
 
+    icons: string[] = ["disabled_by_default", "check_box_outline_blank", "check_box"]
+
     constructor(container: HTMLElement) {
         this.ui = container
         this.ui.innerHTML = ""
-        // this.ui_update_list()
+        // this.ui_updateTodo_list()
     }
 
     newProject(data: IProject) {
@@ -46,7 +48,7 @@ export class ProjectsManager {
 
         this.ui.append(project.ui)
         this.list.push(project)
-        // this.ui_update_list()
+        // this.ui_updateTodo_list()
         return project
     }
 
@@ -62,7 +64,7 @@ export class ProjectsManager {
             project.update(data)
             this.ui_setProjectDetailsPage(project)
         }
-        this.ui_update_list()
+        this.ui_updateTodo_list()
         return project
     }
 
@@ -75,14 +77,14 @@ export class ProjectsManager {
 
     //#region UI methods
 
-    ui_update_list() {
+    ui_updateTodo_list() {
         this.ui.innerHTML = ""
         for (const project of this.list) {
             this.ui.append(project.ui)
             this.ui_setProjectTodos(project)
         }
 
-        // console.info("ui_update_list")      
+        // console.info("ui_updateTodo_list")      
     }
 
     private ui_setProjectDetailsPage(project: Project) {
@@ -173,52 +175,45 @@ export class ProjectsManager {
         }
     }
 
-    ui_toggleTodoStatus(todo: Todo) {
-        let status: string[] = ["pending", "active", "finished"];
-        const new_Todo = todo
-        new_Todo.status = cycleThroughList(status, todo.status, "next") as TodoStatus
-
-        return new_Todo
-    }
-
-
-    ui_update(todoUI: HTMLElement, todo: Todo) {
-
-        todoUI.classList.toggle(todo.status)
-    }
 
     ui_addTodo(todo: Todo) {
         const todosContainer = document.getElementById("project-todos-container") as HTMLDivElement
 
         todosContainer?.append(todo.ui)
         const newUITodo = todo.ui
-        todo.ui.addEventListener('dblclick', (e) => {
+        todo.ui.addEventListener('click', (e) => {
             // const clickedDiv = e.target as HTMLDivElement
             const clickedDiv = todo.ui
             const todoId = clickedDiv.getAttribute('data-todoid')
             // TODO: FIX AND COMPLETE THIS FUNCTION
-            console.log(todoId, this.activeProject)
             const selected_Todo = this.getTodoById(this.activeProject, todoId as string)
 
 
-            console.log("before",selected_Todo)
             const new_todo = this.ui_toggleTodoStatus(todo)
-            this.ui_update(todo.ui, new_todo)
-            console.log("after",selected_Todo)
+            this.ui_updateTodo(new_todo, todo.ui)
+            console.log("after", selected_Todo)
         })
 
-        todo.ui.addEventListener('dblclick', () => {
-            // const projectPage = document.getElementById("projects-page")
-            // const detailsPage = document.getElementById("project-details")
-            // if (!projectPage || !detailsPage) { return }
+    }
 
-            // projectPage.style.display = "none"
-            // detailsPage.style.display = "flex"
-            // this.ui_setProjectDetailsPage(project)
-            // this.ui_setProjectEditPage(project)
-            console.log("Todo double clicked - remove todo")
+    ui_toggleTodoStatus(todo: Todo) {
+        const new_Todo = todo
+        new_Todo.status = cycleThroughList(todoStatusList, todo.status, "next") as TodoStatus
+        return new_Todo
+    }
 
-        })
+
+    ui_updateTodo(todo: Todo, todoUI: HTMLElement ) { 
+        todoUI.classList.remove(todoStatusList[0])
+        todoUI.classList.remove(todoStatusList[1])
+        todoUI.classList.remove(todoStatusList[2])
+        todoUI.classList.toggle(todo.status)
+        let iconElement = todoUI.querySelector(".material-symbols-outlined") as HTMLSpanElement
+        console.log(iconElement.textContent)
+        if (iconElement) {
+            iconElement.textContent = iconsList[todoStatusList.indexOf(todo.status)] as string
+
+        }
     }
 
 
@@ -253,7 +248,7 @@ export class ProjectsManager {
             return project.id !== id
         })
         this.list = remaining
-        // this.ui_update_list()
+        // this.ui_updateTodo_list()
     }
 
     exportToJSON(filename: string = "projects") {
