@@ -43,6 +43,36 @@ function toggleModal(id: string) {
     }
 }
 
+export function cycleThroughList(list: string[], currentString: string, direction: 'next' | 'previous'): string {
+    const currentIndex = list.indexOf(currentString);
+    if (currentIndex === -1) {
+        throw new Error("Current string not found in the list.");
+    }
+
+    if (direction === 'next') {
+        // Get the index of the next string, looping back to the start if necessary
+        const nextIndex = (currentIndex + 1) % list.length;
+        return list[nextIndex];
+    } else if (direction === 'previous') {
+        // Get the index of the previous string, looping back to the end if necessary
+        const previousIndex = (currentIndex - 1 + list.length) % list.length;
+        return list[previousIndex];
+    } else {
+        throw new Error("Invalid direction. Please use 'next' or 'previous'.");
+    }
+}
+
+
+export function toggleStringInList(list: string[], stringToToggle: string): string[] {
+    if (list.includes(stringToToggle)) {
+        // If the string is already in the list, remove it
+        return list.filter(item => item !== stringToToggle);
+    } else {
+        // If the string is not in the list, add it
+        return [...list, stringToToggle];
+    }
+}
+
 function checkInputLength(id: string) {
     const inputElement = document.getElementById(id) as HTMLInputElement;
     if (!inputElement) { return }
@@ -361,6 +391,7 @@ if (todoForm && todoForm instanceof HTMLFormElement) {
             "dueDate" : new Date(formData.get("taskDate") as string )
         }
         try {
+            console.info(todoObj)
             projectsManager.addTodo(todoObj)
             toggleModal("new-todo-modal")
 

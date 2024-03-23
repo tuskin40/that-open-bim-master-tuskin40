@@ -1,7 +1,8 @@
 
 import { isThisTypeNode } from "typescript"
 import { IProject, Project } from "./Project"
-import { ITodo, Todo } from "./Todo"
+import { ITodo, Todo, TodoStatus } from "./Todo"
+import { cycleThroughList } from "../index";
 
 export class ProjectsManager {
     list: Project[] = []
@@ -49,14 +50,14 @@ export class ProjectsManager {
         return project
     }
 
-    
+
     updateProject(data) {
         if (data.name.length < 5) {
             throw new Error(`Project name "${data.name}" too short, it should be more than 5 characters long`);
         }
-        
+
         let project = this.getProjectByName(data.name)
-        
+
         if (project) {
             project.update(data)
             this.ui_setProjectDetailsPage(project)
@@ -64,8 +65,8 @@ export class ProjectsManager {
         this.ui_update_list()
         return project
     }
-    
-    addTodo(todoData: ITodo){
+
+    addTodo(todoData: ITodo) {
         if (todoData) {
             const newTodo = this.activeProject.addTodo(todoData)
             this.ui_addTodo(newTodo)
@@ -74,13 +75,13 @@ export class ProjectsManager {
 
     //#region UI methods
 
-    ui_update_list(){
+    ui_update_list() {
         this.ui.innerHTML = ""
-        for (const project of this.list){
+        for (const project of this.list) {
             this.ui.append(project.ui)
             this.ui_setProjectTodos(project)
         }
-         
+
         // console.info("ui_update_list")      
     }
 
@@ -112,7 +113,7 @@ export class ProjectsManager {
             cost.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
                 project.cost)
         }
-        
+
         const userRole = detailsPage.querySelector("[data-project-info='userRole']")
         if (userRole) { userRole.textContent = project.userRole }
 
@@ -120,24 +121,25 @@ export class ProjectsManager {
         if (status) { status.textContent = project.status }
 
         const progress = detailsPage.querySelector("[data-project-info='progress']") as HTMLDivElement
-        if (progress) { progress.textContent = project.progress.toString() + "%"
-            progress.style.width = (10 + (project.progress / 100 * 90)).toString()+ "%" }
+        if (progress) {
+            progress.textContent = project.progress.toString() + "%"
+            progress.style.width = (10 + (project.progress / 100 * 90)).toString() + "%"
+        }
 
         const finishDate = detailsPage.querySelector("[data-project-info='finishDate']")
         if (finishDate) { finishDate.textContent = new Date(project.finishDate).toISOString().split('T')[0] }
-    
+
         this.ui_setProjectTodos(project)
 
     }
 
     private ui_setProjectTodos(project: Project) {
-        console.log(project)
         const detailsPage = document.getElementById("project-details")
         if (!detailsPage) { return }
 
         const todosContainer = document.getElementById("project-todos-container") as HTMLDivElement
         todosContainer.innerHTML = ""
-        for (const todo of project.todos){
+        for (const todo of project.todos) {
             this.ui_addTodo(todo)
             console.log(todo.ui)
         }
@@ -146,12 +148,12 @@ export class ProjectsManager {
     private ui_setProjectEditPage(project: Project) {
         const projectEditPage = document.getElementById("edit-project-form")
         if (!projectEditPage) { return }
-        
+
         const name = projectEditPage.querySelector("[data-project-info='projectName']") as HTMLInputElement
         if (name) { name.value = project.name }
-        
+
         const description = projectEditPage.querySelector("[data-project-info='description']") as HTMLInputElement
-        if (description) { description.value = project.description}
+        if (description) { description.value = project.description }
 
         const userRole = projectEditPage.querySelector("[data-project-info='userRole']") as HTMLInputElement
         if (userRole) { userRole.value = project.userRole }
@@ -160,26 +162,51 @@ export class ProjectsManager {
         if (status) { status.value = project.status }
 
         const cost = projectEditPage.querySelector("[data-project-info='cost']") as HTMLInputElement
-        if (cost) {cost.value = project.cost.toString()}
+        if (cost) { cost.value = project.cost.toString() }
 
         const progress = projectEditPage.querySelector("[data-project-info='progress']") as HTMLInputElement
-        if (progress) {progress.value = project.progress.toString()}
+        if (progress) { progress.value = project.progress.toString() }
 
         const finishDate = projectEditPage.querySelector("[data-project-info='finishDate']") as HTMLInputElement
         if (finishDate) {
             finishDate.value = new Date(project.finishDate).toISOString().split('T')[0]
-         }
+        }
+    }
+
+    ui_toggleTodoStatus(todo: Todo) {
+        let status: string[] = ["pending", "active", "finished"];
+        const new_Todo = todo
+        new_Todo.status = cycleThroughList(status, todo.status, "next") as TodoStatus
+
+        return new_Todo
+    }
+
+
+    ui_update(todoUI: HTMLElement, todo: Todo) {
+
+        todoUI.classList.toggle(todo.status)
     }
 
     ui_addTodo(todo: Todo) {
         const todosContainer = document.getElementById("project-todos-container") as HTMLDivElement
 
         todosContainer?.append(todo.ui)
-        todo.ui.addEventListener('click', () => {
+        const newUITodo = todo.ui
+        todo.ui.addEventListener('dblclick', (e) => {
+            // const clickedDiv = e.target as HTMLDivElement
+            const clickedDiv = todo.ui
+            const todoId = clickedDiv.getAttribute('data-todoid')
+            // TODO: FIX AND COMPLETE THIS FUNCTION
+            console.log(todoId, this.activeProject)
+            const selected_Todo = this.getTodoById(this.activeProject, todoId as string)
 
-            console.log("Todo clicked - toggle todo")
 
+            console.log("before",selected_Todo)
+            const new_todo = this.ui_toggleTodoStatus(todo)
+            this.ui_update(todo.ui, new_todo)
+            console.log("after",selected_Todo)
         })
+
         todo.ui.addEventListener('dblclick', () => {
             // const projectPage = document.getElementById("projects-page")
             // const detailsPage = document.getElementById("project-details")
@@ -208,6 +235,14 @@ export class ProjectsManager {
             return project.name === name
         })
         return project
+    }
+
+    getTodoById(project: Project, id: string) {
+        const todos_list = project.todos
+        const todo = todos_list.find((t) => {
+            return t.id === id
+        })
+        return todo
     }
 
     deleteProject(id: string) {

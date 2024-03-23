@@ -22,7 +22,7 @@ export class Todo implements ITodo {
         for (const key in data) {
             if (key != 'ui') {
                 this[key] = data[key]
-                // console.log(data[key])
+                console.log(data[key])
             }
         }
 
@@ -36,8 +36,9 @@ export class Todo implements ITodo {
 
         this.ui = document.createElement("div")
         this.ui.className = "todo-item"
+        this.ui.setAttribute("data-todoId", this.id)
         this.ui.innerHTML = `                    
-            <div style="display: flex;justify-content: space-between;align-items: center;">
+            <div style="display: flex;justify-content: space-between;align-items: center;" >
                 <div style="display: flex; align-items: center;">
                     <span class="material-symbols-outlined"
                         style="padding: 8px; background-color: var(--background-100); border-radius: 8px; margin-right: 8px;">task_alt</span>

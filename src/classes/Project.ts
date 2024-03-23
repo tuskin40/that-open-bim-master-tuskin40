@@ -66,7 +66,6 @@ export class Project implements IProject {
 
     addTodo(todoData: ITodo) {
         const new_todo = new Todo(todoData)
-        console.log(new_todo)
         this.todos.push(new_todo)
         return new_todo
     }

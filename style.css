@@ -1,23 +1,28 @@
+/* #region FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap");
+/* #endregion */
 
 /* document.getElementById("new-project-modal").showModal() */
 /* document.getElementById("new-user-modal").showModal() */
 /* document.getElementById("error-modal").showModal() */
 
-/* Variables */
+/* #region Variables */
 :root {
-  --primary: #029ae0;
-  --primary-100: #029ae0;
-  --primary-200: #415a66;
-  --primary-300: #017cb3;
-  --primary-400: #50b6e6;
-  --primary-grey: #969696;
-  --primary-red: rgb(239 68 68);
-  --primary-green: rgb(34 197 94);
-  --background: #202124;
-  --background-100: #26282b;
-  --background-200: #3b3c3f;
+  --color-primary: #029ae0;
+  --color-primary-100: #029ae0;
+  --color-primary-200: #415a66;
+  --color-primary-300: #017cb3;
+  --color-primary-400: #50b6e6;
+  --color-primary-grey: #969696;
+  --color-primary-red: rgb(239 68 68);
+  --color-primary-green: rgb(34 197 94);
+  --color-pending: #ffa500;
+  --color-active: #00ff00;
+  --color-finished: #0000ff;
+  --color-background: #202124;
+  --color-background-100: #26282b;
+  --color-background-200: #3b3c3f;
   --text-sm: 10px;
   --text-base: 12px;
   --text-lg: 14px;
@@ -25,8 +30,9 @@
   --text-2xl: 22px;
   --text-3xl: 28px;
 }
+/* #endregion */
 
-/* General */
+/* #region General */
 /* font-family: 'Kode Mono', sans-serif; */
 * {
   font-family: "Inter", sans-serif;
@@ -39,7 +45,7 @@ body {
   grid-template-columns: 300px 1fr;
   grid-template-areas: "sidebar content";
   height: 100vh;
-  background-color: var(--background);
+  background-color: var(--color-background);
   color: white;
   font-size: var(--text-base);
 }
@@ -52,11 +58,11 @@ button {
   color: white;
   border-radius: 16px;
   border: none;
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
 
 button:hover {
-  background-color: var(--primary-400);
+  background-color: var(--color-primary-400);
 }
 
 .btn-secondary {
@@ -67,7 +73,7 @@ button:hover {
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
   outline: none;
 }
 
@@ -87,10 +93,11 @@ h5 {
   font-size: var(--text-lg);
   margin-bottom: 4px;
 }
+/* #endregion */
 
-/* Sidebar */
+/* #region Sidebar */
 #sidebar {
-  background-color: var(--background-100);
+  background-color: var(--color-background-100);
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -119,14 +126,15 @@ h5 {
 }
 
 #nav-buttons li:hover {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
 
 #nav-buttons li span {
   margin-right: 10px;
 }
+/* #endregion */
 
-/* Content */
+/* #region Content */
 
 #projects-list {
   display: grid;
@@ -145,25 +153,27 @@ main header button {
   justify-content: space-between;
   align-items: center;
 }
+/* #endregion */
 
-/* Page */
+/* #region Page */
 .page {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
+/* #endregion */
 
-/* Cards */
+/* #region Cards */
 
 .project-card {
-  background: var(--background-100);
+  background: var(--color-background-100);
   border-radius: 8px;
   cursor: pointer;
   padding: 8px;
 }
 
 .project-card:hover {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--color-primary);
   /* box-shadow: rgba(123, 123, 124, 0.3) 0px 2px 4px 0px, rgba(87, 96, 124, 0.15) 0px 4px 8px 4px; */
 }
 
@@ -193,7 +203,7 @@ main header button {
 }
 
 div.card-property > p:first-child {
-  color: var(--primary-grey);
+  color: var(--color-primary-grey);
 }
 
 .card-initial {
@@ -203,8 +213,9 @@ div.card-property > p:first-child {
   aspect-ratio: 1;
   text-transform: uppercase;
 }
+/* #endregion */
 
-/* Forms */
+/* #region Forms */
 
 dialog {
   background-color: transparent;
@@ -220,13 +231,13 @@ dialog::backdrop {
 form {
   width: 450px;
   border-radius: 16px;
-  background-color: var(--background-100);
+  background-color: var(--color-background-100);
   color: white;
 }
 
 form h2 {
   padding: 20px;
-  border-bottom: 2px solid var(--background-200);
+  border-bottom: 2px solid var(--color-background-200);
 }
 
 form .input-list {
@@ -262,7 +273,7 @@ input,
 textarea,
 select {
   color: white;
-  background-color: var(--background-200);
+  background-color: var(--color-background-200);
   padding: 8px;
   border-radius: 8px;
   border: none;
@@ -272,17 +283,17 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--color-primary);
 }
 
 .input-tip {
   font-style: italic;
-  color: var(--primary-grey);
+  color: var(--color-primary-grey);
   margin-top: 4px;
 }
 
 .error:focus {
-   outline: 2px solid var(--primary-red);
+  outline: 2px solid var(--color-primary-red);
 }
 
 .btn-secondary-cancel {
@@ -292,7 +303,7 @@ select:focus {
 }
 
 .btn-secondary-cancel:hover {
-  background-color: var(--primary-red);
+  background-color: var(--color-primary-red);
   outline: none;
 }
 
@@ -303,14 +314,15 @@ select:focus {
 }
 
 .btn-secondary-accept:hover {
-  background-color: var(--primary-green);
+  background-color: var(--color-primary-green);
   outline: none;
 }
+/* #endregion */
 
-/* Project Details page */
+/* #region Project Details page */
 
 .dashboard-card {
-  background-color: var(--background-100);
+  background-color: var(--color-background-100);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -329,16 +341,17 @@ select:focus {
 
 .todo-item {
   padding: 20px;
-  background-color: var(--background-200);
+  background-color: var(--color-background-200);
   border-radius: 8px;
   cursor: pointer;
 }
 
 .todo-item:hover {
-  background-color: var(--primary);
+  background-color: var(--color-primary);
 }
+/* #endregion */
 
-/* USER CARD TYPE */
+/* #region USER CARD TYPE */
 
 #user-card-list {
   display: grid;
@@ -352,11 +365,11 @@ select:focus {
   flex-direction: column;
   padding: 8px;
   border-radius: 16px;
-  background-color: var(--background-200);
+  background-color: var(--color-background-200);
   cursor: pointer;
 }
 .user-card:hover {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--color-primary);
 }
 
 .user-card-header {
@@ -384,13 +397,14 @@ select:focus {
 }
 
 .user-card-active {
-  background-color: var(--primary-green);
+  background-color: var(--color-primary-green);
 }
 .user-card-inactive {
-  background-color: var(--primary-red);
+  background-color: var(--color-primary-red);
 }
+/* #endregion */
 
-/* USER LIST TYPE */
+/* #region USER LIST TYPE */
 
 #user-list li {
   list-style-type: none;
@@ -399,13 +413,13 @@ select:focus {
   column-gap: 20;
   justify-content: flex-start;
   align-items: center;
-  background-color: var(--background-100);
+  background-color: var(--color-background-100);
   margin-top: 16px;
   border-radius: 8px;
 }
 
 #user-list li:hover {
-  outline: 2px solid var(--primary);
+  outline: 2px solid var(--color-primary);
 }
 
 #user-list img {
@@ -432,8 +446,8 @@ select:focus {
 #error-modal > div {
   width: 450px;
   border-radius: 16px;
-  border: 2px solid var(--primary-red);
-  background-color: var(--background-100);
+  border: 2px solid var(--color-primary-red);
+  background-color: var(--color-background-100);
   color: white;
   padding: 32px;
   display: flex;
@@ -441,7 +455,19 @@ select:focus {
   row-gap: 16px;
   align-items: center;
 }
+/* #endregion */
 
-/* div {
-    border: 1px solid red;
-} */
+/* #region Todo  */
+.pending {
+  background-color: var(--color-pending);
+}
+
+.active {
+  background-color: var(--color-active);
+}
+.finished {
+  background-color: var(--color-finished);
+}
+
+/* #endregion */
+
