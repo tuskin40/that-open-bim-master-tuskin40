@@ -53,19 +53,19 @@ export class ProjectsManager {
     }
 
 
-    updateProject(data: Project) {
+    updateProject(data) {
         if (data.name.length < 5) {
             throw new Error(`Project name "${data.name}" too short, it should be more than 5 characters long`);
         }
 
-        let project = this.getProjectByName(this.activeProject.name)
+        let existProject = this.getProjectByName(this.activeProject.name)
 
-        if (project) {
-            project.update(data)
-            this.ui_setProjectDetailsPage(project)
-            this.ui_setProjectEditPage(project)
+        if (existProject) {
+            existProject.update(data)
+            this.ui_setProjectDetailsPage(existProject)
+            this.ui_setProjectEditPage(existProject)
         }
-        return project
+        return existProject
     }
 
     addTodo(todoData: ITodo) {
@@ -272,7 +272,23 @@ export class ProjectsManager {
             const projects: IProject[] = JSON.parse(json as string)
             for (const project of projects) {
                 try {
-                    this.newProject(project)
+                    /*
+                    check if project already in list of projects
+                    if it does
+                    confirm with user if they want to update details
+                        update the project with new data
+                    else
+                        create a new project    
+                    */
+                    const existProject = this.getProjectByName(project.name)
+                    if (existProject) {
+                        console.log("Project already exists", existProject)
+                        this.updateProject(project)
+                    }
+                    else {
+
+                        this.newProject(project)
+                    }
                 } catch (err) {
                     console.error(err)
                 }

@@ -54,19 +54,23 @@ export class Project implements IProject {
         }
     }
 
-    update(data: IProject) {
+    update(data) {
         // project data definition
+        // for (const key in data) {
+        //     if (key != 'ui') {
+        //         this[key] = data[key]
+        //         // console.log(data[key])
+        //     }
+        // }
         for (const key in data) {
-            if (key != 'ui') {
+            if (key === 'todos') {
+                this.addTodos(data[key])
+            } else if (key != 'ui') {
                 this[key] = data[key]
                 // console.log(data[key])
             }
         }
-        // this.name           = data.name
-        // this.description    = data.description
-        // this.status         = data.status
-        // this.userRole       = data.userRole
-        // this.finishDate     = data.finishDate
+
         if (!this.id) { this.id = uuidv4() }
         this.updateUI()
     }

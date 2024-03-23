@@ -1,5 +1,5 @@
 import { StringLiteralLike } from "typescript"
-import { IProject, ProjectStatus, UserRole } from "./classes/Project"
+import { IProject, Project, ProjectStatus, UserRole } from "./classes/Project"
 import { ProjectsManager } from "./classes/ProjectsManager"
 import { projectsListSample } from "./classes//ProjectsListSample"
 import { ITodo, Todo, TodoStatus } from "./classes/Todo"
