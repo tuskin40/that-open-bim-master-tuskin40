@@ -99,6 +99,16 @@ if (newProjectInput) {
     })
 }
 
+const editProjectInput = document.getElementById("edit-project-name-input")
+if (editProjectInput) {
+    editProjectInput.addEventListener('focus', () => {
+        checkInputLength(editProjectInput.id)
+    })
+    editProjectInput.addEventListener('input', () => {
+        checkInputLength(editProjectInput.id)
+    })
+}
+
 
 //#region BUTTON FUNCTIONS EVENT LISTENERS
 
@@ -289,6 +299,7 @@ if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
 
         try {
             const myProject = projectsManager.updateProject(projectObj)
+            
             toggleModal("edit-project-modal")
 
         } catch (err) {

@@ -31,13 +31,13 @@
   },
   {
     "cost": 2220398,
-    "progress": 0,
+    "progress": 98,
     "initialsBackgroundColor": "#387ADF",
     "todos": [
       {
         "dateAdded": "2024-03-23T01:32:44.521Z",
         "description": "bgfhgfhfghgfvb",
-        "status": "active",
+        "status": "cancelled",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "20a9f41f-a136-4e51-a10d-1cd3b337e1bd",
         "ui": {}
@@ -51,7 +51,7 @@
         "ui": {}
       }
     ],
-    "name": "vcbcbvb",
+    "name": "vcbc565",
     "description": "vcbcbbvv",
     "userRole": "Architect",
     "status": "Active",

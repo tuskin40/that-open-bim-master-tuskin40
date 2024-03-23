@@ -53,12 +53,12 @@ export class ProjectsManager {
     }
 
 
-    updateProject(data) {
+    updateProject(data: Project) {
         if (data.name.length < 5) {
             throw new Error(`Project name "${data.name}" too short, it should be more than 5 characters long`);
         }
 
-        let project = this.getProjectByName(data.name)
+        let project = this.getProjectByName(this.activeProject.name)
 
         if (project) {
             project.update(data)
@@ -191,7 +191,6 @@ export class ProjectsManager {
 
             const new_todo = this.ui_toggleTodoStatus(todo)
             this.ui_updateTodo(new_todo, todo.ui)
-            console.log("after", selected_Todo)
         })
 
     }
@@ -209,7 +208,6 @@ export class ProjectsManager {
         todoUI.classList.remove(todoStatusList[2])
         todoUI.classList.toggle(todo.status)
         let iconElement = todoUI.querySelector(".material-symbols-outlined") as HTMLSpanElement
-        console.log(iconElement.textContent)
         if (iconElement) {
             iconElement.textContent = iconsList[todoStatusList.indexOf(todo.status)] as string
 
