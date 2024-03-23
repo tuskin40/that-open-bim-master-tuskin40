@@ -63,8 +63,8 @@ export class ProjectsManager {
         if (project) {
             project.update(data)
             this.ui_setProjectDetailsPage(project)
+            this.ui_setProjectEditPage(project)
         }
-        this.ui_updateTodo_list()
         return project
     }
 
@@ -143,7 +143,7 @@ export class ProjectsManager {
         todosContainer.innerHTML = ""
         for (const todo of project.todos) {
             this.ui_addTodo(todo)
-            console.log(todo.ui)
+            // console.log(todo.ui)
         }
     }
 
@@ -203,7 +203,7 @@ export class ProjectsManager {
     }
 
 
-    ui_updateTodo(todo: Todo, todoUI: HTMLElement ) { 
+    ui_updateTodo(todo: Todo, todoUI: HTMLElement) {
         todoUI.classList.remove(todoStatusList[0])
         todoUI.classList.remove(todoStatusList[1])
         todoUI.classList.remove(todoStatusList[2])

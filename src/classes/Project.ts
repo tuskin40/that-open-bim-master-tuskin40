@@ -12,6 +12,7 @@ export interface IProject {
     status: ProjectStatus
     userRole: UserRole
     finishDate: Date
+    todos: Todo[]
 }
 export class Project implements IProject {
     // to satisfy the IProject
@@ -34,9 +35,7 @@ export class Project implements IProject {
         // project data definition
         for (const key in data) {
             if (key === 'todos') {
-                for (const todoKey in this.todos) {
-                    console.log(todoKey)
-                }
+                this.addTodos(data[key])
             } else if (key != 'ui') {
                 this[key] = data[key]
                 // console.log(data[key])
@@ -45,6 +44,14 @@ export class Project implements IProject {
 
         if (!this.id) { this.id = uuidv4() }
         this.setUI()
+    }
+
+    addTodos(todoArray: ITodo[]){
+        for (const todoKey in todoArray) {
+            const newTodo = new Todo(todoArray[todoKey])
+            // console.log("newTodo", newTodo)
+            this.todos.push(newTodo)
+        }
     }
 
     update(data: IProject) {

@@ -1,24 +1,84 @@
 [
   {
+    "cost": 9850459,
+    "progress": 0,
+    "initialsBackgroundColor": "#FAA300",
+    "todos": [
+      {
+        "dateAdded": "2024-03-23T01:30:43.425Z",
+        "description": "fdgdfgdfgdfg",
+        "status": "cancelled",
+        "dueDate": "2024-03-23T00:00:00.000Z",
+        "id": "7df583af-dde6-4ea5-a8ed-0b066c2ed097",
+        "ui": {}
+      },
+      {
+        "dateAdded": "2024-03-23T01:33:04.308Z",
+        "description": "vcbbfdfgdfg",
+        "status": "active",
+        "dueDate": "2024-03-23T00:00:00.000Z",
+        "id": "4f2b9c22-49e8-426e-8525-c6d7e20aad63",
+        "ui": {}
+      }
+    ],
+    "name": "dfgdgdgdfg",
+    "description": "",
+    "userRole": "Architect",
+    "status": "Pending",
+    "finishDate": "2024-03-23T00:00:00.000Z",
+    "id": "de519e2f-f814-441b-8d79-9bad0649b187",
+    "ui": {}
+  },
+  {
+    "cost": 2220398,
+    "progress": 0,
+    "initialsBackgroundColor": "#387ADF",
+    "todos": [
+      {
+        "dateAdded": "2024-03-23T01:32:44.521Z",
+        "description": "bgfhgfhfghgfvb",
+        "status": "active",
+        "dueDate": "2024-03-23T00:00:00.000Z",
+        "id": "20a9f41f-a136-4e51-a10d-1cd3b337e1bd",
+        "ui": {}
+      },
+      {
+        "dateAdded": "2024-03-23T01:32:51.833Z",
+        "description": "vcgfhfghbv",
+        "status": "finished",
+        "dueDate": "2024-03-23T00:00:00.000Z",
+        "id": "ed0ecfca-3635-4767-bb14-970237e257ac",
+        "ui": {}
+      }
+    ],
+    "name": "vcbcbvb",
+    "description": "vcbcbbvv",
+    "userRole": "Architect",
+    "status": "Active",
+    "finishDate": "2024-03-23T00:00:00.000Z",
+    "id": "f190492e-f15a-413f-8102-58ae5da1ccb0",
+    "ui": {}
+  },
+  {
     "cost": 7589644,
     "progress": 0,
     "initialsBackgroundColor": "#FAA300",
     "todos": [
       {
-        "dateAdded": "2024-03-19T21:58:29.617Z",
-        "description": "gfdgdfggf",
-        "done": false,
-        "id": "ac20a942-2821-414f-93bb-55d320360021",
-        "ui": {},
-        "dueDate": "2024-03-24T00:00:00.000Z"
+        "dateAdded": "2024-03-23T01:34:00.244Z",
+        "description": "cvbcbcvbcbcv",
+        "status": "active",
+        "dueDate": "2024-03-23T00:00:00.000Z",
+        "id": "2c16d3f7-6dde-4cce-841a-0325d654e3a6",
+        "ui": {}
       },
       {
-        "dateAdded": "2024-03-19T21:58:41.003Z",
-        "description": "fdgfdcvbcvb",
-        "done": false,
-        "id": "4947b34a-1ab2-435a-9121-92fff2dde819",
-        "ui": {},
-        "dueDate": "2024-03-31T00:00:00.000Z"
+        "dateAdded": "2024-03-23T01:34:05.397Z",
+        "description": "cvbvcbvbbdfgfdgdf",
+        "status": "finished",
+        "dueDate": "2024-03-23T00:00:00.000Z",
+        "id": "217d6369-2439-440b-890c-9103b8b784fe",
+        "ui": {}
       }
     ],
     "name": "fgdfg345435435",
@@ -27,6 +87,28 @@
     "status": "Pending",
     "finishDate": "2024-03-19T00:00:00.000Z",
     "id": "ef5b3012-89d8-4de5-8585-3412543e94a3",
+    "ui": {}
+  },
+  {
+    "cost": 3495139,
+    "progress": 0,
+    "initialsBackgroundColor": "#8447ff",
+    "todos": [
+      {
+        "dateAdded": "2024-03-23T10:34:42.442Z",
+        "description": "fdgdgdfgfdgdgf",
+        "status": "cancelled",
+        "dueDate": "2024-03-27T00:00:00.000Z",
+        "id": "690f4f73-693f-4938-a88b-638c86430a46",
+        "ui": {}
+      }
+    ],
+    "name": "ghfhfhtrzt7757676765",
+    "description": "tgrefbvvb  dggfdgdfg",
+    "userRole": "Architect",
+    "status": "Pending",
+    "finishDate": "2024-03-27T00:00:00.000Z",
+    "id": "4b41a77d-bbd6-43b7-b5e6-75039be6455c",
     "ui": {}
   }
 ]
