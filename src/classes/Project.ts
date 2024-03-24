@@ -27,7 +27,7 @@ export class Project implements IProject {
     cost: number = Math.floor(Math.random() * Math.pow(10, 7)) // Remove
     progress: number = 0
     id: string
-    initialsBackgroundColor: string = initialsBackgroundColors[Math.floor(Math.random() * 11)]
+    initialsBackgroundColor: string 
     todos: Todo[] = []
 
 
@@ -43,6 +43,7 @@ export class Project implements IProject {
         }
 
         if (!this.id) { this.id = uuidv4() }
+        this.initialsBackgroundColor = initialsBackgroundColors[Math.floor(Math.random() * 11)]
         this.setUI()
     }
 

@@ -88,7 +88,7 @@
                                 placeholder="Short description of the project"
                                 data-project-info="description"></textarea>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
                             <select name="userRole" data-project-info="userRole">
                                 <option>Architect</option>
@@ -96,7 +96,7 @@
                                 <option>Developer</option>
                             </select>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
                             <select name="status" data-project-info="status">
                                 <option>Pending</option>
@@ -104,9 +104,9 @@
                                 <option>Finished</option>
                             </select>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input data-project-info="finishDate" name="finishDate" type="date">
+                            <input data-project-info="finishDate" name="finishDate" type="date" >
                         </div>
 
                     </div>
@@ -136,12 +136,13 @@
                                 placeholder="Short description of the project"
                                 data-project-info="description"></textarea>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">money</span>Cost</label>
                             <input id="edit-project-cost-input" data-project-info="cost" name="cost" type="text"
-                                placeholder="cost of the project">
+                                placeholder="cost of the project" pattern="[0-9.,]+" >
+                                
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
                             <select name="userRole" data-project-info="userRole">
                                 <option>Architect</option>
@@ -149,7 +150,7 @@
                                 <option>Developer</option>
                             </select>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
                             <select name="status" data-project-info="status">
                                 <option>Pending</option>
@@ -157,15 +158,15 @@
                                 <option>Finished</option>
                             </select>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">money</span>Progress</label>
                             <input id="edit-project-progress-input" data-project-info="progress" name="progress"
-                                type="text" placeholder="project progress">
+                                type="text" placeholder="project progress" style="text-align: right; ">
                         </div>
 
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input data-project-info="finishDate" name="finishDate" type="date">
+                            <input data-project-info="finishDate" name="finishDate" type="date" >
                         </div>
 
                     </div>
