@@ -3,7 +3,7 @@ import { IProject, Project, ProjectStatus, ProjectRole } from "./classes/Project
 import { ProjectsManager } from "./classes/ProjectsManager"
 import { projectsListSample } from "./classes//ProjectsListSample"
 import { ITodo, Todo, TodoStatus } from "./classes/Todo"
-import { IUser, User, UserStatus, ProjectRole } from "./classes/User"
+import { IUser, User, UserStatus, UserRole } from "./classes/User"
 import { UsersManager } from "./classes/UsersManager"
 
 // const showModal = () => {

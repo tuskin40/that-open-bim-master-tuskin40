@@ -107,7 +107,7 @@ export class UsersManager {
             for (const user of users) {
                 try {
 
-                    const existUser = this.getUserByName(user.name)
+                    const existUser = this.getUserByName(user.userName)
                     if (existUser) {
                         console.log("Project already exists", existUser)
                         this.updateUser(user)
