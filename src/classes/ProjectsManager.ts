@@ -245,7 +245,7 @@ export class ProjectsManager {
         }
 
         const userRole = detailsPage.querySelector("[data-project-info='userRole']")
-        if (userRole) { userRole.textContent = project.userRole }
+        if (userRole) { userRole.textContent = project.projectRole }
 
         const status = detailsPage.querySelector("[data-project-info='status']")
         if (status) { status.textContent = project.status }

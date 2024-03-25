@@ -51,7 +51,7 @@ export class UsersManager {
         // this.ui_updateTodo_list()
     }
 
-    updateUser(data: User) {
+    updateUser(data) {
         // if (data.name.length < 5) {
         //     throw new Error(`Project name "${data.name}" too short, it should be more than 5 characters long`);
         // }
@@ -113,7 +113,6 @@ export class UsersManager {
                         this.updateUser(user)
                     }
                     else {
-
                         this.newUser(user)
                     }
                 } catch (err) {
