@@ -1,18 +1,40 @@
 import { StringLiteralLike } from "typescript"
-import { IProject, Project, ProjectStatus, UserRole } from "./classes/Project"
+import { IProject, Project, ProjectStatus, ProjectRole } from "./classes/Project"
 import { ProjectsManager } from "./classes/ProjectsManager"
 import { projectsListSample } from "./classes//ProjectsListSample"
 import { ITodo, Todo, TodoStatus } from "./classes/Todo"
+import { IUser, User, UserStatus, ProjectRole } from "./classes/User"
+import { UsersManager } from "./classes/UsersManager"
 
 // const showModal = () => {
 //     const modal = document.getElementById("new-project-modal")
 //     modal.showModal()
 // }
 
+
+//#region ELEMENTS SELECTION
+
+// Project Manager code
+const projectListUI = document.getElementById("projects-list") as HTMLElement
+const projectsManager = new ProjectsManager(projectListUI)
+
+// UsersManager code
+const usersListUI = document.getElementById("user-card-list") as HTMLElement
+const usersManager = new UsersManager(usersListUI)
+
+// Pages
+const projectPage = document.getElementById("projects-page") as HTMLDivElement
+const usersPage = document.getElementById("users-page") as HTMLDivElement
+const detailsPage = document.getElementById("project-details") as HTMLDivElement
+
+
+//#endregion
+
+
 //#region GENERAL FUNCTIONS 
 
 // functions for modal form display
-function showModal(id: string) {
+export function showModal(id: string) {
     const modal = document.getElementById(id)
     if (modal && modal instanceof HTMLDialogElement) {
         modal.showModal()
@@ -21,7 +43,7 @@ function showModal(id: string) {
     }
 }
 
-function closeModal(id: string) {
+export function closeModal(id: string) {
     const modal = document.getElementById(id)
     if (modal && modal instanceof HTMLDialogElement) {
         modal.close()
@@ -30,7 +52,7 @@ function closeModal(id: string) {
     }
 }
 
-function toggleModal(id: string) {
+export function toggleModal(id: string) {
     const modal = document.getElementById(id)
     if (modal && modal instanceof HTMLDialogElement) {
         if (modal.open) {
@@ -75,7 +97,7 @@ export function toggleStringInList(list: string[], stringToToggle: string): stri
     }
 }
 
-function checkInputLength(id: string) {
+export function checkInputLength(id: string) {
     const inputElement = document.getElementById(id) as HTMLInputElement;
     if (!inputElement) { return }
 
@@ -87,127 +109,20 @@ function checkInputLength(id: string) {
         inputElement.classList.remove('error');
     }
 }
-//#endregion
 
-const newProjectInput = document.getElementById("new-project-name-input")
-if (newProjectInput) {
-    newProjectInput.addEventListener('focus', () => {
-        checkInputLength(newProjectInput.id)
-    })
-    newProjectInput.addEventListener('input', () => {
-        checkInputLength(newProjectInput.id)
-    })
-}
+export function formatDate(date: Date) {
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const editProjectInput = document.getElementById("edit-project-name-input")
-if (editProjectInput) {
-    editProjectInput.addEventListener('focus', () => {
-        checkInputLength(editProjectInput.id)
-    })
-    editProjectInput.addEventListener('input', () => {
-        checkInputLength(editProjectInput.id)
-    })
-}
-
-
-//#region BUTTON FUNCTIONS EVENT LISTENERS
-
-
-// Navigation Project button code
-const allProjectBtn = document.getElementById("projects-btn")
-if (allProjectBtn) {
-    allProjectBtn.addEventListener("click", () => {
-        const projectPage = document.getElementById("projects-page")
-        const detailsPage = document.getElementById("project-details")
-        if (!projectPage || !detailsPage) { return }
-
-        projectPage.style.display = "flex"
-        detailsPage.style.display = "none"
-
-    })
-} else {
-    console.warn("projects-btn was not found")
-}
-
-// New Project button code
-const newProjectBtn = document.getElementById("new-project-btn")
-if (newProjectBtn) {
-    newProjectBtn.addEventListener("click", () => {
-        const newProjectForm = document.getElementById("new-project-form")
-        const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
-        finishDateInput.value = new Date().toISOString().split('T')[0];
-        toggleModal("new-project-modal")
-    })
-} else {
-    console.warn("new-project-btn was not found")
-}
-
-// Project Edit button
-const editProjectBtn = document.getElementById("project-edit-btn")
-if (editProjectBtn) {
-    editProjectBtn.addEventListener("click", () => {
-        const newProjectForm = document.getElementById("edit-project-form")
-        // const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
-        // finishDateInput.value = new Date().toISOString().split('T')[0];
-        toggleModal("edit-project-modal")
-    })
-} else {
-    console.warn("project-edit-btn was not found")
-}
-
-
-// Add Project-todo button
-const addProjectTodoBtn = document.getElementById("add-todo-btn")
-if (addProjectTodoBtn) {
-    addProjectTodoBtn.addEventListener("click", () => {
-        const newProjectTodoForm = document.getElementById("new-todo-form")
-        const taskDescriptionInput = newProjectTodoForm?.querySelector('[data-project-info="taskDescription"]') as HTMLInputElement
-        taskDescriptionInput.value = ""
-        const taskDateInput = newProjectTodoForm?.querySelector('[data-project-info="taskDate"]') as HTMLInputElement
-        taskDateInput.value = new Date().toISOString().split('T')[0];
-        toggleModal("new-todo-modal")
-    })
-} else {
-    console.warn("add-todo-btn was not found")
-}
-
-
-
-// Export button code
-const exportProjectBtn = document.getElementById("export-project-btn")
-if (exportProjectBtn) {
-    exportProjectBtn.addEventListener("click", () => { projectsManager.exportToJSON() })
-} else {
-    console.warn("export-project-btn button was not found")
-}
-
-// Import button code
-const importProjectBtn = document.getElementById("import-project-btn")
-if (importProjectBtn) {
-    importProjectBtn.addEventListener("click", () => {
-        projectsManager.importFromJSON()
-        // projectsManager.ui_update_list()
-    })
-
-} else {
-    console.warn("import-project-btn button was not found")
-}
-
-
-// Error modal button
-const errorModalBtn = document.getElementById("error-modal-button")
-if (errorModalBtn) {
-    errorModalBtn.addEventListener("click", () => { toggleModal("error-modal") })
-} else {
-    console.warn("New error-modal-button was not found")
+    const newDate = new Date(date)
+    return daysOfWeek[newDate.getDay()] + ", " + newDate.getDate() + " " + months[newDate.getMonth()]
 }
 
 //#endregion
 
 
-// Project Manager code
-const projectListUI = document.getElementById("projects-list") as HTMLElement
-const projectsManager = new ProjectsManager(projectListUI)
+
+
 
 // Error message code
 
@@ -216,7 +131,7 @@ const projectsManager = new ProjectsManager(projectListUI)
 
 
 
-//#region ADD NEW PROJECT FORM 
+//#region SUBMIT NEW PROJECT FORM 
 
 // Cancel New project button
 const cancelFormBtn = document.getElementById("cancel-new-project-button") as HTMLElement
@@ -236,7 +151,7 @@ if (projectForm && projectForm instanceof HTMLFormElement) {
         const projectObj: IProject = {
             "name": formData.get("name") as string,
             "description": formData.get("description") as string,
-            "userRole": formData.get("userRole") as UserRole,
+            "projectRole": formData.get("projectRole") as ProjectRole,
             "status": formData.get("status") as ProjectStatus,
             "finishDate": new Date(formData.get("finishDate") as string),
         }
@@ -289,7 +204,7 @@ if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
         const projectObj = {
             "name": formData.get("name") as string,
             "description": formData.get("description") as string,
-            "userRole": formData.get("userRole") as UserRole,
+            "userRole": formData.get("userRole") as ProjectRole,
             "status": formData.get("status") as ProjectStatus,
             "finishDate": new Date(formData.get("finishDate") as string),
             "cost": parseFloat(formData.get("cost") as string),
@@ -299,7 +214,7 @@ if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
 
         try {
             const myProject = projectsManager.updateProject(projectObj)
-            
+
             toggleModal("edit-project-modal")
 
         } catch (err) {
@@ -323,7 +238,7 @@ if (projectEditForm && projectEditForm instanceof HTMLFormElement) {
 
 
 
-//#region ADD NEW USER FORM 
+//#region SUBMIT NEW USER FORM 
 
 
 // Cancel Todo  button
@@ -342,16 +257,16 @@ if (userForm && userForm instanceof HTMLFormElement) {
     userForm.addEventListener("submit", (e) => {
         e.preventDefault()
         const formData = new FormData(userForm)
-        const projectObj: IProject = {
-            "name": formData.get("name") as string,
-            "description": formData.get("description") as string,
-            "userRole": formData.get("userRole") as UserRole,
-            "status": formData.get("status") as ProjectStatus,
-            "finishDate": new Date(formData.get("finishDate") as string),
+        const userObj: IUser = {
+            "dateAdded": new Date(),
+            "fullName": formData.get("fullName") as string,
+            "userName": formData.get("userName") as string,
+            "role": formData.get("userRole") as ProjectRole,
+            "status": formData.get("status") as UserStatus,
         }
 
         try {
-            const myProject = projectsManager.newProject(projectObj)
+            const new_user = usersManager.newUser(userObj)
             userForm.reset()
             toggleModal("new-user-modal")
 
@@ -377,7 +292,7 @@ if (userForm && userForm instanceof HTMLFormElement) {
 
 
 
-//#region ADD NEW TODO FORM 
+//#region SUBMIT NEW TODO FORM 
 
 
 
@@ -421,8 +336,195 @@ if (todoForm && todoForm instanceof HTMLFormElement) {
 }
 
 
-//#endregion
+//#endregion SUBMIT NEW TODO FORM
+//#endregion FORM INPUTS
 
+//#region PROJECT EVENT LISTENERS
+
+
+const newProjectInput = document.getElementById("new-project-name-input")
+if (newProjectInput) {
+    newProjectInput.addEventListener('focus', () => {
+        checkInputLength(newProjectInput.id)
+    })
+    newProjectInput.addEventListener('input', () => {
+        checkInputLength(newProjectInput.id)
+    })
+}
+
+const editProjectInput = document.getElementById("edit-project-name-input")
+if (editProjectInput) {
+    editProjectInput.addEventListener('focus', () => {
+        checkInputLength(editProjectInput.id)
+    })
+    editProjectInput.addEventListener('input', () => {
+        checkInputLength(editProjectInput.id)
+    })
+}
+
+
+// New Project button code
+const newProjectBtn = document.getElementById("new-project-btn")
+if (newProjectBtn) {
+    newProjectBtn.addEventListener("click", () => {
+        const newProjectForm = document.getElementById("new-project-form")
+        const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
+        finishDateInput.value = new Date().toISOString().split('T')[0];
+        toggleModal("new-project-modal")
+    })
+} else {
+    console.warn("new-project-btn was not found")
+}
+
+
+
+// New Project button code
+const newUserBtn = document.getElementById("btn-add-user")
+if (newUserBtn) {
+    newUserBtn.addEventListener("click", () => {
+        const newUserForm = document.getElementById("new-project-form")
+        toggleModal("new-user-modal")
+    })
+} else {
+    console.warn("new-project-btn was not found")
+}
+
+
+
+
+// Project Edit button
+const editProjectBtn = document.getElementById("project-edit-btn")
+if (editProjectBtn) {
+    editProjectBtn.addEventListener("click", () => {
+        const newProjectForm = document.getElementById("edit-project-form")
+        // const finishDateInput = newProjectForm?.querySelector("[data-project-info='finishDate']") as HTMLInputElement
+        // finishDateInput.value = new Date().toISOString().split('T')[0];
+        toggleModal("edit-project-modal")
+    })
+} else {
+    console.warn("project-edit-btn was not found")
+}
+
+
+// Export button code
+const exportProjectBtn = document.getElementById("export-project-btn")
+if (exportProjectBtn) {
+    exportProjectBtn.addEventListener("click", () => { projectsManager.exportToJSON() })
+} else {
+    console.warn("export-project-btn button was not found")
+}
+
+// Import button code
+const importProjectBtn = document.getElementById("import-project-btn")
+if (importProjectBtn) {
+    importProjectBtn.addEventListener("click", () => {
+        projectsManager.importFromJSON()
+        // projectsManager.ui_update_list()
+    })
+
+} else {
+    console.warn("import-project-btn button was not found")
+}
+
+
+
+//#endregion PROJECT EVENT LISTENERS
+
+//#region USER EVENT LISTENERS
+
+// Export button code
+const exportUserBtn = document.getElementById("export-users-btn")
+if (exportUserBtn) {
+    exportUserBtn.addEventListener("click", () => { usersManager.exportToJSON() })
+} else {
+    console.warn("export-project-btn button was not found")
+}
+
+// Import button code
+const importUserBtn = document.getElementById("import-users-btn")
+if (importUserBtn) {
+    importUserBtn.addEventListener("click", () => {
+        usersManager.importFromJSON()
+        // projectsManager.ui_update_list()
+    })
+
+} else {
+    console.warn("import-project-btn button was not found")
+}
+
+
+//#endregion USER EVENT LISTENERS
+
+
+// Add Project-todo button
+const addProjectTodoBtn = document.getElementById("add-todo-btn")
+if (addProjectTodoBtn) {
+    addProjectTodoBtn.addEventListener("click", () => {
+        const newProjectTodoForm = document.getElementById("new-todo-form")
+        const taskDescriptionInput = newProjectTodoForm?.querySelector('[data-project-info="taskDescription"]') as HTMLInputElement
+        taskDescriptionInput.value = ""
+        const taskDateInput = newProjectTodoForm?.querySelector('[data-project-info="taskDate"]') as HTMLInputElement
+        taskDateInput.value = new Date().toISOString().split('T')[0];
+        toggleModal("new-todo-modal")
+    })
+} else {
+    console.warn("add-todo-btn was not found")
+}
+
+
+
+// Error modal button
+const errorModalBtn = document.getElementById("error-modal-button")
+if (errorModalBtn) {
+    errorModalBtn.addEventListener("click", () => { toggleModal("error-modal") })
+} else {
+    console.warn("New error-modal-button was not found")
+}
+
+
+
+
+
+//#region NAVIGATION BUTTONS
+
+// Navigation All Projects button code
+const allProjectBtn = document.getElementById("projects-btn")
+if (allProjectBtn) {
+    allProjectBtn.addEventListener("click", () => {
+        // const projectPage = document.getElementById("projects-page")
+        // const detailsPage = document.getElementById("project-details")
+        if (!projectPage || !detailsPage) { return }
+
+        usersPage.style.display = "none"
+        detailsPage.style.display = "none"
+        projectPage.style.display = "flex"
+    })
+} else {
+    console.warn("projects-btn was not found")
+}
+
+
+// Navigation All Users button code
+const allUsersBtn = document.getElementById("people-btn")
+if (allUsersBtn) {
+    allUsersBtn.addEventListener("click", () => {
+        // const projectPage   = document.getElementById("projects-page")
+        // const usersPage     = document.getElementById("users-page")
+        if (!projectPage || !usersPage) { return }
+
+        projectPage.style.display = "none"
+        detailsPage.style.display = "none"
+        usersPage.style.display = "flex"
+    })
+} else {
+    console.warn("projects-btn was not found")
+}
+
+
+
+
+
+//#endregion
 
 // load data when document is loaded
 // document.addEventListener('DOMContentLoaded', () => {

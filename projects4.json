@@ -7,7 +7,7 @@
       {
         "dateAdded": "2024-03-23T01:30:43.425Z",
         "description": "fdgdfgdfgdfg",
-        "status": "cancelled",
+        "status": "Cancelled",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "7df583af-dde6-4ea5-a8ed-0b066c2ed097",
         "ui": {}
@@ -15,7 +15,7 @@
       {
         "dateAdded": "2024-03-23T01:33:04.308Z",
         "description": "vcbbfdfgdfg",
-        "status": "active",
+        "status": "Active",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "4f2b9c22-49e8-426e-8525-c6d7e20aad63",
         "ui": {}
@@ -23,7 +23,7 @@
     ],
     "name": "dfgdgdgdfg",
     "description": "",
-    "userRole": "Architect",
+    "projectRole": "Architect",
     "status": "Pending",
     "finishDate": "2024-03-23T00:00:00.000Z",
     "id": "de519e2f-f814-441b-8d79-9bad0649b187",
@@ -37,7 +37,7 @@
       {
         "dateAdded": "2024-03-23T01:32:44.521Z",
         "description": "bgfhgfhfghgfvb",
-        "status": "cancelled",
+        "status": "Cancelled",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "20a9f41f-a136-4e51-a10d-1cd3b337e1bd",
         "ui": {}
@@ -45,7 +45,7 @@
       {
         "dateAdded": "2024-03-23T01:32:51.833Z",
         "description": "vcgfhfghbv",
-        "status": "finished",
+        "status": "Finished",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "ed0ecfca-3635-4767-bb14-970237e257ac",
         "ui": {}
@@ -53,7 +53,7 @@
     ],
     "name": "vcbc565",
     "description": "vcbcbbvv",
-    "userRole": "Architect",
+    "projectRole": "Architect",
     "status": "Active",
     "finishDate": "2024-03-23T00:00:00.000Z",
     "id": "f190492e-f15a-413f-8102-58ae5da1ccb0",
@@ -67,7 +67,7 @@
       {
         "dateAdded": "2024-03-23T01:34:00.244Z",
         "description": "cvbcbcvbcbcv",
-        "status": "active",
+        "status": "Active",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "2c16d3f7-6dde-4cce-841a-0325d654e3a6",
         "ui": {}
@@ -75,7 +75,7 @@
       {
         "dateAdded": "2024-03-23T01:34:05.397Z",
         "description": "cvbvcbvbbdfgfdgdf",
-        "status": "finished",
+        "status": "Finished",
         "dueDate": "2024-03-23T00:00:00.000Z",
         "id": "217d6369-2439-440b-890c-9103b8b784fe",
         "ui": {}
@@ -83,7 +83,7 @@
     ],
     "name": "fgdfg345435435",
     "description": "regtertfdgfdg",
-    "userRole": "Architect",
+    "projectRole": "Architect",
     "status": "Pending",
     "finishDate": "2024-03-19T00:00:00.000Z",
     "id": "ef5b3012-89d8-4de5-8585-3412543e94a3",
@@ -97,7 +97,7 @@
       {
         "dateAdded": "2024-03-23T10:34:42.442Z",
         "description": "fdgdgdfgfdgdgf",
-        "status": "cancelled",
+        "status": "Cancelled",
         "dueDate": "2024-03-27T00:00:00.000Z",
         "id": "690f4f73-693f-4938-a88b-638c86430a46",
         "ui": {}
@@ -105,7 +105,7 @@
     ],
     "name": "ghfhfhtrzt7757676765",
     "description": "tgrefbvvb  dggfdgdfg",
-    "userRole": "Architect",
+    "projectRole": "Architect",
     "status": "Pending",
     "finishDate": "2024-03-27T00:00:00.000Z",
     "id": "4b41a77d-bbd6-43b7-b5e6-75039be6455c",

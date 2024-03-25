@@ -25,18 +25,23 @@
             <div id="projects-page" class="page">
                 <!-- <div id=" projects-page" class="page"> -->
 
-
                 <header>
                     <h2>Projects</h2>
+                    <div id="project-search" style="margin-top: 16px;">
+                        <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                            <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                                <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
+                                <input type="text" placeholder="Search project" style="width: 100%;">
+                            </div>
+                        </div>
+                    </div>
                     <div style="display: flex; align-items: center;column-gap: 16px;">
-                        <span id="import-project-btn" class="material-symbols-outlined"
-                            style="cursor: pointer;">file_upload</span>
-                        <span id="export-project-btn" class="material-symbols-outlined"
-                            style="cursor: pointer;">file_download</span>
-                        <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New
-                            Project</button>
+                        <span id="import-project-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Upload JSON">file_upload</span>
+                        <span id="export-project-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Save JSON">file_download</span>
+                        <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New Project</button>
                     </div>
                 </header>
+
                 <div id="projects-list">
                     <div class="project-card">
                         <div class="card-header">
@@ -90,7 +95,7 @@
                         </div>
                         <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                            <select name="userRole" data-project-info="userRole">
+                            <select name="projectRole" data-project-info="projectRole">
                                 <option>Architect</option>
                                 <option>Engineer</option>
                                 <option>Developer</option>
@@ -144,7 +149,7 @@
                         </div>
                         <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                            <select name="userRole" data-project-info="userRole">
+                            <select name="projectRole" data-project-info="projectRole">
                                 <option>Architect</option>
                                 <option>Engineer</option>
                                 <option>Developer</option>
@@ -222,7 +227,7 @@
                                 </div>
                                 <div>
                                     <p style="color: var(--primary-grey);font-size: var(--text-sm);">Role</p>
-                                    <p data-project-info="userRole">Engineer</p>
+                                    <p data-project-info="projectRole">Engineer</p>
                                 </div>
                                 <div>
                                     <p style="color: var(--primary-grey); font-size: var(--text-sm);">Status</p>
@@ -271,27 +276,29 @@
             </div>
             <!-- #endregion -->
 
-            <!-- #region USERS LIST - CARD TYPE -->
+            <!-- #region USERS LIST CARD TYPE -->
             
             <div id="users-page" class="page" style="display: none;">
+
                 <header>
-                    <div>
-                        <h3>Users</h3>
-                        <p style="color: var(--primary-grey);">Community Hopital location</p>
-                    </div>
-                </header>
-                <div class="main-page-content">
+                    <h2>Users</h2>
                     <div id="user-search" style="margin-top: 16px;">
-                        <div
-                            style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
-                            <div
-                                style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                        <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                            <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
                                 <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                 <input type="text" placeholder="Search user" style="width: 100%;">
                             </div>
-                            <button class="btn-secondary" style="width: 150px;">Add user</button>
                         </div>
                     </div>
+                    <div style="display: flex; align-items: center;column-gap: 16px;">
+                        <span id="import-users-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Upload JSON">file_upload</span>
+                        <span id="export-users-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Save JSON">file_download</span>
+                        <button id="btn-add-user"><span class="material-symbols-outlined">add</span>New User</button>
+                    </div>
+                </header>
+
+                <div class="main-page-content">
+
                     <div id="user-card-list">
                         <div class="user-card">
                             <div class="user-card-header">
@@ -357,7 +364,7 @@
             </div>
             <!-- #endregion -->
 
-            <!-- #region USERS LIST - LIST TYPE -->
+            <!-- #region USERS LIST TYPE -->
             <div id="users-page" class="page" style="display: none;">
                 <header>
                     <div>
@@ -451,30 +458,29 @@
                     <div class="input-list">
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">person</span>Name</label>
-                            <input type="text">
-                            <span class="input-tip">TIP: Give it a short name</span>
+                            <input type="text" name="fullName">
                         </div>
                         <div class="form-field-container">
                             <label><span class="material-symbols-outlined">tv_signin</span>Username</label>
-                            <input type="text">
-                            <span class="input-tip">TIP: Give it a short name</span>
+                            <input type="text" name="userName">
+                            <span class="input-tip">TIP: Minimum 5 character long</span>
                         </div>
-                        <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
-                            <select>
+                            <select name="userRole">
                                 <option>Architect</option>
                                 <option>Engineer</option>
                                 <option>Developer</option>
                             </select>
                         </div>
-                        <!-- <div class="form-field-container">
+                        <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">clock_loader_40</span>Status</label>
-                            <select>
+                            <select name="status">
                                 <option>Pending</option>
                                 <option>Active</option>
-                                <option>Finished</option>
+                                <option>Deactivated</option>
                             </select>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="form-buttons-container">
                         <button id="cancel-new-user-button" class="btn-secondary-cancel" type="button">Cancel</button>

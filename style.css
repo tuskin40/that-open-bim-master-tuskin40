@@ -18,7 +18,8 @@
   --color-primary-red: rgb(239 68 68);
   --color-primary-green: rgb(34 197 94);
   --color-cancelled: #ff0000;
-  --color-active: #969696;
+  --color-pending: #969696;
+  --color-active: #017cb3;
   --color-finished: #00ff00;
   --color-background: #202124;
   --color-background-100: #26282b;
@@ -78,7 +79,6 @@ button {
 button:hover {
   background-color: var(--color-primary-400);
   outline: 2px solid var(--color-primary);
-  box-shadow: inset 0 0 10px #a4c9db, 0 0 10px #fff;
 }
 
 .btn-secondary {
@@ -144,22 +144,14 @@ h5 {
 
 #nav-buttons li:hover {
   outline: 2px solid var(--color-primary);
-  box-shadow: inset 0 0 10px #a4c9db, 0 0 10px #fff;
 }
 
 #nav-buttons li span {
   margin-right: 10px;
 }
 
-#import-project-btn,
-#export-project-btn,
-button,
-.todo-item,
-#nav-buttons li {
-  transition-property: box-shadow;
-  transition-duration: 0.3s;
-  transition-delay: 0s;
-}
+#import-users-btn,
+#export-users-btn,
 #import-project-btn,
 #export-project-btn {
   padding: 8px;
@@ -167,9 +159,28 @@ button,
   border-radius: 16px;
 }
 
+/* Animations */
+#import-project-btn,
+#export-project-btn,
+#import-users-btn,
+#export-users-btn,
+button,
+.user-card,
+.todo-item,
+#nav-buttons li {
+  transition-property: box-shadow;
+  transition-duration: 0.3s;
+  transition-delay: 0s;
+}
+
 #import-project-btn:hover,
+#export-project-btn:hover,
+#import-users-btn:hover,
+#export-users-btn:hover,
+button:hover,
 .todo-item:hover,
-#export-project-btn:hover {
+.user-card:hover,
+#nav-buttons li:hover {
   box-shadow: inset 0 0 10px #a4c9db, 0 0 10px #fff;
 }
 
@@ -471,6 +482,20 @@ select:focus {
 .user-card-inactive {
   background-color: var(--color-primary-red);
 }
+
+.user-role {
+  /* margin: 8px 0px; */
+  font-weight: 400;
+}
+
+.user-username {
+  color: var(--color-primary-grey);
+}
+
+.user-card-header div p {
+  margin: 4px 0px;
+}
+
 /* #endregion */
 
 /* #region USER LIST TYPE */
@@ -527,14 +552,18 @@ select:focus {
 /* #endregion */
 
 /* #region Todo  */
-.cancelled {
+.Cancelled, .Deactivated {
   background-color: var(--color-cancelled);
 }
 
-.active {
+.Active {
   background-color: var(--color-active);
 }
-.finished {
+
+.Pending {
+  background-color: var(--color-pending);
+}
+.Finished {
   background-color: var(--color-finished);
   /* text-decoration: line-through; */
 }

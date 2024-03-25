@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from "uuid"
+import { formatDate } from "../index"
 
-export type TodoStatus = "cancelled" | "active" | "finished"
+export type TodoStatus = "Cancelled" | "Active" | "Finished"
 export const iconsList: string[] = ["disabled_by_default", "check_box_outline_blank", "check_box"]
-export const todoStatusList: string[] = ["cancelled", "active", "finished"];
+export const todoStatusList: string[] = ["Cancelled", "Active", "Finished"];
 
 export interface ITodo {
     dateAdded: Date
@@ -14,7 +15,7 @@ export interface ITodo {
 export class Todo implements ITodo {
     dateAdded: Date
     description: string
-    status: "cancelled" | "active" | "finished"
+    status: TodoStatus
     dueDate: Date
 
     ui: HTMLDivElement
@@ -35,11 +36,6 @@ export class Todo implements ITodo {
 
         if (this.ui) { return } // prevents from code running again after the ui has already been created
 
-        const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        
-        const dueDate = new Date(this.dueDate)
-        const formattedDueDate = daysOfWeek[dueDate.getDay()] + ", " + dueDate.getDate() + " " + months[dueDate.getMonth()]
      
         this.ui = document.createElement("div")
         this.ui.className = "todo-item " + this.status
@@ -51,7 +47,7 @@ export class Todo implements ITodo {
                         style="padding: 8px; background-color: var(--background-100); border-radius: 8px; margin-right: 8px;">${iconsList[todoStatusList.indexOf(this.status)]}</span>
                     ${this.description}
                 </div>
-                <p style="text-wrap: nowrap;margin-left: 8px;">${formattedDueDate}</p>
+                <p style="text-wrap: nowrap;margin-left: 8px;">${formatDate(this.dueDate)}</p>
             </div>
                                 `
     }

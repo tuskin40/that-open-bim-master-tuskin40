@@ -14,9 +14,20 @@ export class ProjectsManager {
     constructor(container: HTMLElement) {
         this.ui = container
         this.ui.innerHTML = ""
-        // this.ui_updateTodo_list()
     }
 
+
+    totalProjectsCost() {
+        const initialValue = 0
+        const totalProjCost = this.list.reduce((accumulator, project) =>
+            accumulator + project.cost, initialValue
+        )
+        return totalProjCost
+    }
+
+
+    //#region PROJECT C-R-U-D
+    // CREATE
     newProject(data: IProject) {
         const projectNames = this.list.map((project) => {
             return project.name
@@ -53,6 +64,23 @@ export class ProjectsManager {
     }
 
 
+    // READ
+    getProject(id: string) {
+        const project = this.list.find((project) => {
+            return project.id === id
+        })
+        return project
+    }
+
+    getProjectByName(name: string) {
+        const project = this.list.find((project) => {
+            return project.name === name
+        })
+        return project
+    }
+
+
+    // UPDATE
     updateProject(data) {
         if (data.name.length < 5) {
             throw new Error(`Project name "${data.name}" too short, it should be more than 5 characters long`);
@@ -68,12 +96,112 @@ export class ProjectsManager {
         return existProject
     }
 
+    // DELETE
+    deleteProject(id: string) {
+        const project = this.getProject(id)
+        if (!project) { return }
+        project.ui.remove()
+        const remaining = this.list.filter((project) => {
+            return project.id !== id
+        })
+        this.list = remaining
+        // this.ui_updateTodo_list()
+    }
+
+//#endregion
+
+
+//#region TODO C-R-U-D
+    // CREATE
     addTodo(todoData: ITodo) {
         if (todoData) {
             const newTodo = this.activeProject.addTodo(todoData)
             this.ui_addTodo(newTodo)
         }
     }
+
+
+    // READ
+    getTodoById(project: Project, id: string) {
+        const todos_list = project.todos
+        const todo = todos_list.find((t) => {
+            return t.id === id
+        })
+        return todo
+    }
+
+    // UPDATE
+    // DELETE
+
+//#region IMPORT / EXPORT
+
+    exportToJSON(filename: string = "projects") {
+        const json = JSON.stringify(this.list, null, 2)
+        const blob = new Blob([json], { type: 'application/json' })
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = filename
+        a.click()
+        URL.revokeObjectURL(url) // delete url created earlier 
+
+    }
+
+
+
+    importFromJSON() {
+        const input = document.createElement('input')
+        input.type = 'file'
+        input.accept = 'application/json'
+        const reader = new FileReader()
+        reader.addEventListener("load", () => {
+            const json = reader.result
+            if (!json) { return }
+            const projects: IProject[] = JSON.parse(json as string)
+            for (const project of projects) {
+                try {
+                    /*
+                    check if project already in list of projects
+                    if it does
+                    confirm with user if they want to update details
+                        update the project with new data
+                    else
+                        create a new project    
+                    */
+                    const existProject = this.getProjectByName(project.name)
+                    if (existProject) {
+                        console.log("Project already exists", existProject)
+                        this.updateProject(project)
+                    }
+                    else {
+
+                        this.newProject(project)
+                    }
+                } catch (err) {
+                    console.error(err)
+                }
+            }
+        })
+        input.addEventListener("change", () => {
+            const fileList = input.files
+            if (!fileList) { return }
+            reader.readAsText(fileList[0])
+        })
+        input.click()
+    }
+
+    // loadDefaultData(projects: Project[]){
+    //     for (const project of projects) {
+    //         try {
+    //             this.newProject(project)
+    //         } catch (err) {
+    //             console.error(err)
+    //         }
+    //     }       
+    // }
+
+    //#endregion
+
 
     //#region UI methods
 
@@ -157,8 +285,8 @@ export class ProjectsManager {
         const description = projectEditPage.querySelector("[data-project-info='description']") as HTMLInputElement
         if (description) { description.value = project.description }
 
-        const userRole = projectEditPage.querySelector("[data-project-info='userRole']") as HTMLInputElement
-        if (userRole) { userRole.value = project.userRole }
+        const projectRole = projectEditPage.querySelector("[data-project-info='userRole']") as HTMLInputElement
+        if (projectRole) { projectRole.value = project.projectRole }
 
         const status = projectEditPage.querySelector("[data-project-info='status']") as HTMLInputElement
         if (status) { status.value = project.status }
@@ -217,107 +345,4 @@ export class ProjectsManager {
 
     //#endregion
 
-    getProject(id: string) {
-        const project = this.list.find((project) => {
-            return project.id === id
-        })
-        return project
-    }
-    getProjectByName(name: string) {
-        const project = this.list.find((project) => {
-            return project.name === name
-        })
-        return project
-    }
-
-    getTodoById(project: Project, id: string) {
-        const todos_list = project.todos
-        const todo = todos_list.find((t) => {
-            return t.id === id
-        })
-        return todo
-    }
-
-    deleteProject(id: string) {
-        const project = this.getProject(id)
-        if (!project) { return }
-        project.ui.remove()
-        const remaining = this.list.filter((project) => {
-            return project.id !== id
-        })
-        this.list = remaining
-        // this.ui_updateTodo_list()
-    }
-
-    exportToJSON(filename: string = "projects") {
-        const json = JSON.stringify(this.list, null, 2)
-        const blob = new Blob([json], { type: 'application/json' })
-        const url = URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = filename
-        a.click()
-        URL.revokeObjectURL(url) // delete url created earlier 
-
-    }
-
-    importFromJSON() {
-        const input = document.createElement('input')
-        input.type = 'file'
-        input.accept = 'application/json'
-        const reader = new FileReader()
-        reader.addEventListener("load", () => {
-            const json = reader.result
-            if (!json) { return }
-            const projects: IProject[] = JSON.parse(json as string)
-            for (const project of projects) {
-                try {
-                    /*
-                    check if project already in list of projects
-                    if it does
-                    confirm with user if they want to update details
-                        update the project with new data
-                    else
-                        create a new project    
-                    */
-                    const existProject = this.getProjectByName(project.name)
-                    if (existProject) {
-                        console.log("Project already exists", existProject)
-                        this.updateProject(project)
-                    }
-                    else {
-
-                        this.newProject(project)
-                    }
-                } catch (err) {
-                    console.error(err)
-                }
-            }
-        })
-        input.addEventListener("change", () => {
-            const fileList = input.files
-            if (!fileList) { return }
-            reader.readAsText(fileList[0])
-        })
-        input.click()
-    }
-
-    // loadDefaultData(projects: Project[]){
-    //     for (const project of projects) {
-    //         try {
-    //             this.newProject(project)
-    //         } catch (err) {
-    //             console.error(err)
-    //         }
-    //     }       
-    // }
-
-
-    totalProjectsCost() {
-        const initialValue = 0
-        const totalProjCost = this.list.reduce((accumulator, project) =>
-            accumulator + project.cost, initialValue
-        )
-        return totalProjCost
-    }
 }

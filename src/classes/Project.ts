@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid"
 import { ITodo, Todo } from "./Todo"
 
-export type ProjectStatus = "pending" | "active" | "finished"
-export type UserRole = "architect" | "engineer" | "developer"
+export type ProjectStatus = "Pending" | "Active" | "Finished"
+export type ProjectRole = "Architect" | "Engineer" | "Developer"
 const initialsBackgroundColors = ["#FBA834", "#387ADF", "#8447ff", "#8cffda", "#50C4ED", "#FAA300", "#F4538A", "#F5DD61", "#c2a3f4", "#59D5E0"]
 
 
@@ -10,16 +10,15 @@ export interface IProject {
     name: string
     description: string
     status: ProjectStatus
-    userRole: UserRole
+    projectRole: ProjectRole
     finishDate: Date
-    todos: Todo[]
 }
 export class Project implements IProject {
     // to satisfy the IProject
     name: string
     description: string
-    status: "pending" | "active" | "finished"
-    userRole: "architect" | "engineer" | "developer"
+    status: ProjectStatus
+    projectRole: ProjectRole
     finishDate: Date
 
     // Class internal
@@ -55,7 +54,7 @@ export class Project implements IProject {
         }
     }
 
-    update(data) {
+    update(data: Todo) {
         // project data definition
         // for (const key in data) {
         //     if (key != 'ui') {
@@ -118,7 +117,7 @@ export class Project implements IProject {
             </div>
             <div class="card-property">
                 <p>Role</p>
-                <p>${this.userRole}</p>
+                <p>${this.projectRole}</p>
             </div>
             <div class="card-property">
                 <p>Cost</p>
@@ -153,7 +152,7 @@ export class Project implements IProject {
             </div>
             <div class="card-property">
                 <p>Role</p>
-                <p>${this.userRole}</p>
+                <p>${this.projectRole}</p>
             </div>
             <div class="card-property">
                 <p>Cost</p>
