@@ -28,17 +28,22 @@
                 <header>
                     <h2>Projects</h2>
                     <div id="project-search" style="margin-top: 16px;">
-                        <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
-                            <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                        <div
+                            style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                            <div
+                                style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
                                 <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                 <input type="text" placeholder="Search project" style="width: 100%;">
                             </div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center;column-gap: 16px;">
-                        <span id="import-project-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Upload JSON">file_upload</span>
-                        <span id="export-project-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Save JSON">file_download</span>
-                        <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New Project</button>
+                        <span id="import-project-btn" class="material-symbols-outlined" style="cursor: pointer;"
+                            title="Upload JSON">file_upload</span>
+                        <span id="export-project-btn" class="material-symbols-outlined" style="cursor: pointer;"
+                            title="Save JSON">file_download</span>
+                        <button id="new-project-btn"><span class="material-symbols-outlined">add</span>New
+                            Project</button>
                     </div>
                 </header>
 
@@ -111,7 +116,7 @@
                         </div>
                         <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input data-project-info="finishDate" name="finishDate" type="date" >
+                            <input data-project-info="finishDate" name="finishDate" type="date">
                         </div>
 
                     </div>
@@ -144,8 +149,8 @@
                         <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">money</span>Cost</label>
                             <input id="edit-project-cost-input" data-project-info="cost" name="cost" type="text"
-                                placeholder="cost of the project" pattern="[0-9.,]+" >
-                                
+                                placeholder="cost of the project" pattern="[0-9.,]+">
+
                         </div>
                         <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">account_circle</span>Role</label>
@@ -171,7 +176,7 @@
 
                         <div class="form-field-container-hor">
                             <label><span class="material-symbols-outlined">calendar_month</span>Finish Date</label>
-                            <input data-project-info="finishDate" name="finishDate" type="date" >
+                            <input data-project-info="finishDate" name="finishDate" type="date">
                         </div>
 
                     </div>
@@ -213,7 +218,12 @@
                             style="padding: 16px; display: flex;flex-direction: column; row-gap: 16px;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <p class="card-initial" data-project-info="initials">HC</p>
-                                <button id="project-edit-btn" class="btn-secondary">Edit</button>
+                                <div style="display: flex; align-items: center; column-gap: 8px;">
+                                    <button id="edit-project-btn" class="btn-secondary">Edit</button>
+                                    <button id="delete-project-btn" class="btn-secondary-delete">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </div>
                             </div>
                             <div>
                                 <h5 data-project-info="card-name">Project name</h5>
@@ -277,22 +287,26 @@
             <!-- #endregion -->
 
             <!-- #region USERS LIST CARD TYPE -->
-            
+
             <div id="users-page" class="page" style="display: none;">
 
                 <header>
                     <h2>Users</h2>
                     <div id="user-search" style="margin-top: 16px;">
-                        <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
-                            <div style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
+                        <div
+                            style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px;">
+                            <div
+                                style="display: flex;justify-content: space-between;align-items: center; column-gap: 16px; width: 350px;">
                                 <span class="material-symbols-outlined" style="cursor: pointer;">search</span>
                                 <input type="text" placeholder="Search user" style="width: 100%;">
                             </div>
                         </div>
                     </div>
                     <div style="display: flex; align-items: center;column-gap: 16px;">
-                        <span id="import-users-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Upload JSON">file_upload</span>
-                        <span id="export-users-btn" class="material-symbols-outlined" style="cursor: pointer;" title="Save JSON">file_download</span>
+                        <span id="import-users-btn" class="material-symbols-outlined" style="cursor: pointer;"
+                            title="Upload JSON">file_upload</span>
+                        <span id="export-users-btn" class="material-symbols-outlined" style="cursor: pointer;"
+                            title="Save JSON">file_download</span>
                         <button id="btn-add-user"><span class="material-symbols-outlined">add</span>New User</button>
                     </div>
                 </header>

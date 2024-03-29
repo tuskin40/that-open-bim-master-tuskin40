@@ -375,13 +375,28 @@ select:focus {
   outline: 2px solid var(--color-primary-red);
 }
 
-.btn-secondary-cancel {
+.btn-secondary-cancel, .btn-secondary-delete {
   background-color: transparent;
   outline: 2px solid #969696;
   width: 100px;
 }
+.btn-secondary-cancel {
+  width: 100px;
+}
 
-.btn-secondary-cancel:hover {
+.btn-secondary-delete {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary-cancel:hover, .btn-secondary-delete:hover  {
+  background-color: var(--color-primary-red);
+  outline: none;
+}
+
+.btn-secondary-delete:hover {
   background-color: var(--color-primary-red);
   outline: none;
 }

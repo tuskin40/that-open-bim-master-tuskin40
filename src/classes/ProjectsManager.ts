@@ -105,6 +105,7 @@ export class ProjectsManager {
             return project.id !== id
         })
         this.list = remaining
+        console.log(this.list)
         // this.ui_updateTodo_list()
     }
 

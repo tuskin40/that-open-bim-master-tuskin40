@@ -386,14 +386,14 @@ if (newUserBtn) {
         toggleModal("new-user-modal")
     })
 } else {
-    console.warn("new-project-btn was not found")
+    console.warn("btn-add-user was not found")
 }
 
 
 
 
 // Project Edit button
-const editProjectBtn = document.getElementById("project-edit-btn")
+const editProjectBtn = document.getElementById("edit-project-btn")
 if (editProjectBtn) {
     editProjectBtn.addEventListener("click", () => {
         const newProjectForm = document.getElementById("edit-project-form")
@@ -402,7 +402,20 @@ if (editProjectBtn) {
         toggleModal("edit-project-modal")
     })
 } else {
-    console.warn("project-edit-btn was not found")
+    console.warn("edit-project-btn was not found")
+}
+
+// Project Delete button
+const deleteProjectBtn = document.getElementById("delete-project-btn")
+if (deleteProjectBtn) {
+    deleteProjectBtn.addEventListener("click", () => {
+        projectsManager.deleteProject(projectsManager.activeProject.id)
+        usersPage.style.display = "none"
+        detailsPage.style.display = "none"
+        projectPage.style.display = "flex"
+    })
+} else {
+    console.warn("delete-project-btn was not found")
 }
 
 
@@ -437,7 +450,7 @@ const exportUserBtn = document.getElementById("export-users-btn")
 if (exportUserBtn) {
     exportUserBtn.addEventListener("click", () => { usersManager.exportToJSON() })
 } else {
-    console.warn("export-project-btn button was not found")
+    console.warn("export-users-btn button was not found")
 }
 
 // Import button code
@@ -449,7 +462,7 @@ if (importUserBtn) {
     })
 
 } else {
-    console.warn("import-project-btn button was not found")
+    console.warn("import-users-btn button was not found")
 }
 
 
