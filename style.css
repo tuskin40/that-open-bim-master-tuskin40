@@ -487,7 +487,7 @@ select:focus {
 .user-card-inactive {
   padding: 4px;
   border-radius: 8px;
-  width: 64px;
+  width: 80px;
   text-align: center;
 }
 
