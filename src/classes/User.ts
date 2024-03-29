@@ -32,7 +32,7 @@ export class User implements IUser {
     // Feature - Add the list of projects to User
     // projectsList: Project[] = []
 
-    
+
     constructor(data: IUser) {
         for (const key in data) {
             if (key != 'ui') {
@@ -49,8 +49,8 @@ export class User implements IUser {
         if (this.ui) { return } // prevents from code running again after the ui has already been created
 
         this.ui = document.createElement("div")
-        this.ui.className = "user-card" 
-        this.ui.setAttribute("data-todoId", this.id)
+        this.ui.className = "user-card"
+        this.ui.setAttribute("data-userId", this.id)
         this.ui.innerHTML = `                    
             <div class="user-card-header">
                 <img src="./assets/user-svgrepo-com.svg" alt="">

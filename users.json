@@ -16,5 +16,14 @@
     "status": "Pending",
     "id": "fb45fa9f-ca18-4795-93a9-cf9e940de10a",
     "ui": {}
+  },
+  {
+    "dateAdded": "2024-03-29T20:59:44.409Z",
+    "fullName": "Peter",
+    "userName": "PPeet2023",
+    "role": "Engineer",
+    "status": "Deactivated",
+    "id": "8310c767-1d8c-48d2-8146-7752d9c33972",
+    "ui": {}
   }
 ]
